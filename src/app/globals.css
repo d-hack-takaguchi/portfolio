@@ -3,6 +3,13 @@
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
+  --primary: #1a3a6c;
+  --primary-dark: #122b52;
+  --accent: #2ecaa0;
+  --accent-dark: #25a886;
+  --accent-light: #d1fae5;
+  --gradient-start: #1a3a6c;
+  --gradient-end: #2ecaa0;
 }
 
 body {
@@ -13,4 +20,17 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Utility for brand gradient text */
+.text-brand-gradient {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Utility for brand gradient background */
+.bg-brand-gradient {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
 }

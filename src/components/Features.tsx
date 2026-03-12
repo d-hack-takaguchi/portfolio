@@ -1,32 +1,51 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Cloud, ShieldCheck, BarChart3, Workflow } from "lucide-react";
+import {
+  Sparkles,
+  Blocks,
+  Bot,
+  FileSearch,
+  Code,
+  Users,
+} from "lucide-react";
 
 const features = [
   {
-    icon: Cloud,
-    title: "クラウド移行・最適化",
+    icon: Sparkles,
+    title: "DX推進コンサルティング",
     description:
-      "AWS / GCP / Azure を活用したクラウドネイティブアーキテクチャの設計と移行支援。コスト最適化まで一貫して伴走します。",
+      "課題ヒアリングからロードマップ策定、実行支援まで。As-Is/To-Be分析に基づくBPR提案で、DXの全体像を描きます。",
   },
   {
-    icon: ShieldCheck,
-    title: "セキュリティ強化",
+    icon: Blocks,
+    title: "ローコード開発",
     description:
-      "ゼロトラストモデルの導入から脆弱性診断まで、エンタープライズレベルのセキュリティ基盤を構築します。",
+      "PowerApps・Power Automate・Kintone・SharePointによるアプリ・ワークフロー構築。短期間で業務に直結するシステムを実現します。",
   },
   {
-    icon: BarChart3,
-    title: "データ分析基盤",
+    icon: Bot,
+    title: "生成AI導入支援",
     description:
-      "データレイク・ウェアハウスの設計からBI ダッシュボード構築まで、データドリブン経営を実現します。",
+      "Claude・ChatGPT・Gemini等の業務活用を支援。プロンプト設計から業務プロセスへの組み込みまで伴走します。",
   },
   {
-    icon: Workflow,
-    title: "業務プロセス自動化",
+    icon: FileSearch,
+    title: "RPA・OCR自動化",
     description:
-      "CI/CD パイプライン構築、IaC 導入、既存ワークフローの自動化により開発生産性を飛躍的に向上させます。",
+      "Power Automate Desktop・VBA・AI-OCRを活用した業務自動化。帳票処理やデータ入力の工数を大幅に削減します。",
+  },
+  {
+    icon: Code,
+    title: "システム・Web開発",
+    description:
+      "React/TypeScriptによるWebアプリ開発、要件定義・画面設計・技術選定支援まで、開発フェーズを幅広くカバーします。",
+  },
+  {
+    icon: Users,
+    title: "内製化支援・技術移転",
+    description:
+      "担当者が自走できる仕組みづくり。技術ドキュメント整備・ハンズオン支援で、持続可能な運用体制を構築します。",
   },
 ];
 
@@ -35,7 +54,7 @@ const cardVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.12, duration: 0.5 },
+    transition: { delay: i * 0.1, duration: 0.5 },
   }),
 };
 
@@ -43,19 +62,10 @@ export default function Features() {
   return (
     <section id="features" className="bg-white py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="text-center">
-          <span className="text-sm font-semibold tracking-wide text-indigo-600">
-            サービス
-          </span>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
-            包括的なITコンサルティング
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-600">
-            戦略策定からハンズオン実装まで、テクノロジーのあらゆるフェーズをカバーします。
-          </p>
-        </div>
-
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <span className="mb-8 block text-center text-sm font-semibold tracking-wide text-[#2ecaa0]">
+          サービス
+        </span>
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
@@ -64,9 +74,9 @@ export default function Features() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={cardVariants}
-              className="group rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-indigo-200 hover:shadow-lg"
+              className="group rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-[#2ecaa0]/40 hover:shadow-lg"
             >
-              <div className="mb-4 inline-flex rounded-xl bg-indigo-50 p-3 text-indigo-600 transition group-hover:bg-indigo-100">
+              <div className="mb-4 inline-flex rounded-xl bg-gradient-to-br from-[#1a3a6c]/10 to-[#2ecaa0]/10 p-3 text-[#1a3a6c] transition group-hover:from-[#1a3a6c]/15 group-hover:to-[#2ecaa0]/15">
                 <f.icon size={24} />
               </div>
               <h3 className="mb-2 text-lg font-semibold text-slate-900">

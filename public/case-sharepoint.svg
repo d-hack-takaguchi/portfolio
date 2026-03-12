@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a3a6c"/>
+      <stop offset="100%" stop-color="#2ecaa0"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="300" fill="url(#bg)"/>
+  <!-- Cloud shape -->
+  <ellipse cx="300" cy="80" rx="100" ry="40" fill="white" opacity="0.08"/>
+  <ellipse cx="260" cy="85" rx="60" ry="30" fill="white" opacity="0.06"/>
+  <ellipse cx="350" cy="85" rx="60" ry="30" fill="white" opacity="0.06"/>
+  <!-- Upload arrow to cloud -->
+  <path d="M300 130 L300 170" stroke="white" stroke-width="3" opacity="0.3" stroke-linecap="round"/>
+  <path d="M290 140 L300 128 L310 140" stroke="white" stroke-width="3" opacity="0.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Browser/app windows -->
+  <rect x="120" y="170" width="160" height="105" rx="10" fill="white" opacity="0.12"/>
+  <rect x="120" y="170" width="160" height="22" rx="10" fill="white" opacity="0.08"/>
+  <circle cx="136" cy="181" r="4" fill="white" opacity="0.25"/>
+  <circle cx="150" cy="181" r="4" fill="white" opacity="0.2"/>
+  <circle cx="164" cy="181" r="4" fill="white" opacity="0.15"/>
+  <rect x="132" y="200" width="136" height="8" rx="2" fill="white" opacity="0.2"/>
+  <rect x="132" y="216" width="100" height="8" rx="2" fill="white" opacity="0.15"/>
+  <rect x="132" y="232" width="120" height="8" rx="2" fill="white" opacity="0.15"/>
+  <rect x="132" y="248" width="80" height="8" rx="2" fill="white" opacity="0.15"/>
+  <rect x="320" y="170" width="160" height="105" rx="10" fill="white" opacity="0.12"/>
+  <rect x="320" y="170" width="160" height="22" rx="10" fill="white" opacity="0.08"/>
+  <circle cx="336" cy="181" r="4" fill="white" opacity="0.25"/>
+  <circle cx="350" cy="181" r="4" fill="white" opacity="0.2"/>
+  <circle cx="364" cy="181" r="4" fill="white" opacity="0.15"/>
+  <!-- Form fields in right window -->
+  <rect x="332" y="200" width="136" height="20" rx="4" fill="white" opacity="0.1"/>
+  <rect x="340" y="206" width="60" height="8" rx="2" fill="white" opacity="0.2"/>
+  <rect x="332" y="228" width="136" height="20" rx="4" fill="white" opacity="0.1"/>
+  <rect x="340" y="234" width="80" height="8" rx="2" fill="white" opacity="0.2"/>
+  <rect x="332" y="256" width="60" height="16" rx="6" fill="white" opacity="0.2"/>
+  <!-- Connection lines -->
+  <line x1="200" y1="170" x2="260" y2="130" stroke="white" stroke-width="1.5" opacity="0.15" stroke-dasharray="4 3"/>
+  <line x1="400" y1="170" x2="340" y2="130" stroke="white" stroke-width="1.5" opacity="0.15" stroke-dasharray="4 3"/>
+  <!-- Decorative -->
+  <circle cx="50" cy="50" r="20" fill="white" opacity="0.04"/>
+  <circle cx="560" cy="260" r="25" fill="white" opacity="0.04"/>
+</svg>

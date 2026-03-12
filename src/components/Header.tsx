@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "#features", label: "サービス" },
-  { href: "#cases", label: "導入事例" },
+  { href: "#about", label: "About Me" },
+  { href: "#cases", label: "実績・事例" },
   { href: "#techstack", label: "技術スタック" },
   { href: "#contact", label: "お問い合わせ" },
 ];
@@ -15,9 +17,16 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 z-50 w-full border-b border-slate-200/60 bg-white/80 backdrop-blur-lg">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#" className="text-xl font-bold tracking-tight text-slate-900">
-          ConsultPro
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+        <a href="#" className="flex items-center gap-2">
+          <Image
+            src="/logo.png"
+            alt="DxHack"
+            width={280}
+            height={70}
+            className="h-10 w-auto md:h-12"
+            priority
+          />
         </a>
 
         {/* Desktop */}
@@ -26,7 +35,7 @@ export default function Header() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-slate-600 transition hover:text-indigo-600"
+                className="text-sm font-medium text-slate-600 transition hover:text-[#2ecaa0]"
               >
                 {link.label}
               </a>
@@ -34,12 +43,12 @@ export default function Header() {
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className="hidden rounded-full bg-indigo-600 px-5 py-2 text-sm font-medium text-white transition hover:bg-indigo-700 md:inline-block"
+        <button
+          onClick={() => window.dispatchEvent(new CustomEvent("open-contact-modal"))}
+          className="hidden rounded-full bg-brand-gradient px-5 py-2 text-sm font-medium text-white transition hover:opacity-90 md:inline-block"
         >
           無料相談
-        </a>
+        </button>
 
         {/* Mobile toggle */}
         <button
@@ -66,13 +75,15 @@ export default function Header() {
             </li>
           ))}
           <li className="pt-2">
-            <a
-              href="#contact"
-              onClick={() => setOpen(false)}
-              className="inline-block rounded-full bg-indigo-600 px-5 py-2 text-sm font-medium text-white"
+            <button
+              onClick={() => {
+                setOpen(false);
+                window.dispatchEvent(new CustomEvent("open-contact-modal"));
+              }}
+              className="inline-block rounded-full bg-brand-gradient px-5 py-2 text-sm font-medium text-white"
             >
               無料相談
-            </a>
+            </button>
           </li>
         </ul>
       )}

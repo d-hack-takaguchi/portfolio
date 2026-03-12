@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" fill="none">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a3a6c" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#2ecaa0" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a3a6c" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#2ecaa0" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a3a6c" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#2ecaa0" stop-opacity="0.12"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Network nodes and connections representing DX/digital connectivity -->
+  <!-- Connection lines -->
+  <line x1="120" y1="180" x2="320" y2="280" stroke="url(#g2)" stroke-width="1.5"/>
+  <line x1="320" y1="280" x2="200" y2="500" stroke="url(#g2)" stroke-width="1"/>
+  <line x1="320" y1="280" x2="500" y2="200" stroke="url(#g2)" stroke-width="1.5"/>
+  <line x1="500" y1="200" x2="650" y2="350" stroke="url(#g2)" stroke-width="1"/>
+  <line x1="120" y1="180" x2="80" y2="400" stroke="url(#g2)" stroke-width="1"/>
+  <line x1="80" y1="400" x2="200" y2="500" stroke="url(#g2)" stroke-width="1"/>
+  <line x1="200" y1="500" x2="350" y2="620" stroke="url(#g2)" stroke-width="1"/>
+  <line x1="500" y1="200" x2="400" y2="100" stroke="url(#g2)" stroke-width="1"/>
+
+  <!-- Right side connections -->
+  <line x1="1050" y1="150" x2="1200" y2="280" stroke="url(#g2)" stroke-width="1.5"/>
+  <line x1="1200" y1="280" x2="1350" y2="200" stroke="url(#g2)" stroke-width="1"/>
+  <line x1="1200" y1="280" x2="1100" y2="450" stroke="url(#g2)" stroke-width="1.5"/>
+  <line x1="1100" y1="450" x2="1280" y2="550" stroke="url(#g2)" stroke-width="1"/>
+  <line x1="1350" y1="200" x2="1400" y2="380" stroke="url(#g2)" stroke-width="1"/>
+  <line x1="1280" y1="550" x2="1350" y2="700" stroke="url(#g2)" stroke-width="1"/>
+  <line x1="1050" y1="150" x2="950" y2="300" stroke="url(#g2)" stroke-width="1"/>
+  <line x1="950" y1="300" x2="1100" y2="450" stroke="url(#g2)" stroke-width="1"/>
+
+  <!-- Bottom connections -->
+  <line x1="350" y1="620" x2="550" y2="750" stroke="url(#g2)" stroke-width="1"/>
+  <line x1="550" y1="750" x2="750" y2="680" stroke="url(#g2)" stroke-width="1"/>
+  <line x1="950" y1="700" x2="1100" y2="800" stroke="url(#g2)" stroke-width="1"/>
+
+  <!-- Nodes (circles) - left side -->
+  <circle cx="120" cy="180" r="8" fill="url(#g3)"/>
+  <circle cx="120" cy="180" r="3" fill="#1a3a6c" opacity="0.2"/>
+  <circle cx="320" cy="280" r="12" fill="url(#g3)"/>
+  <circle cx="320" cy="280" r="4" fill="#2ecaa0" opacity="0.25"/>
+  <circle cx="200" cy="500" r="6" fill="url(#g3)"/>
+  <circle cx="200" cy="500" r="2.5" fill="#1a3a6c" opacity="0.2"/>
+  <circle cx="500" cy="200" r="10" fill="url(#g3)"/>
+  <circle cx="500" cy="200" r="3.5" fill="#2ecaa0" opacity="0.2"/>
+  <circle cx="650" cy="350" r="6" fill="url(#g3)"/>
+  <circle cx="80" cy="400" r="5" fill="url(#g3)"/>
+  <circle cx="350" cy="620" r="7" fill="url(#g3)"/>
+  <circle cx="400" cy="100" r="5" fill="url(#g3)"/>
+  <circle cx="550" cy="750" r="5" fill="url(#g3)"/>
+
+  <!-- Nodes - right side -->
+  <circle cx="1050" cy="150" r="9" fill="url(#g3)"/>
+  <circle cx="1050" cy="150" r="3" fill="#1a3a6c" opacity="0.2"/>
+  <circle cx="1200" cy="280" r="12" fill="url(#g3)"/>
+  <circle cx="1200" cy="280" r="4" fill="#2ecaa0" opacity="0.25"/>
+  <circle cx="1350" cy="200" r="7" fill="url(#g3)"/>
+  <circle cx="1100" cy="450" r="10" fill="url(#g3)"/>
+  <circle cx="1100" cy="450" r="3.5" fill="#1a3a6c" opacity="0.2"/>
+  <circle cx="1280" cy="550" r="8" fill="url(#g3)"/>
+  <circle cx="1280" cy="550" r="3" fill="#2ecaa0" opacity="0.2"/>
+  <circle cx="1400" cy="380" r="5" fill="url(#g3)"/>
+  <circle cx="1350" cy="700" r="6" fill="url(#g3)"/>
+  <circle cx="950" cy="300" r="6" fill="url(#g3)"/>
+
+  <!-- Decorative shapes - abstract data/circuit elements -->
+  <!-- Rounded rectangles suggesting screens/dashboards -->
+  <rect x="60" y="120" width="40" height="28" rx="6" fill="none" stroke="#1a3a6c" stroke-opacity="0.08" stroke-width="1.5"/>
+  <rect x="1300" y="160" width="50" height="32" rx="6" fill="none" stroke="#2ecaa0" stroke-opacity="0.08" stroke-width="1.5"/>
+  <rect x="280" y="580" width="36" height="24" rx="5" fill="none" stroke="#1a3a6c" stroke-opacity="0.06" stroke-width="1"/>
+  <rect x="1060" y="410" width="44" height="30" rx="6" fill="none" stroke="#2ecaa0" stroke-opacity="0.07" stroke-width="1"/>
+
+  <!-- Dotted paths suggesting data flow -->
+  <path d="M 160 700 Q 300 650 440 700 Q 580 750 720 700" stroke="#2ecaa0" stroke-opacity="0.08" stroke-width="1.5" stroke-dasharray="6 4" fill="none"/>
+  <path d="M 800 100 Q 900 150 1000 100 Q 1100 50 1200 100" stroke="#1a3a6c" stroke-opacity="0.06" stroke-width="1.5" stroke-dasharray="6 4" fill="none"/>
+
+  <!-- Hexagons suggesting tech/blockchain -->
+  <polygon points="470,430 490,418 510,430 510,454 490,466 470,454" fill="none" stroke="#1a3a6c" stroke-opacity="0.07" stroke-width="1.5"/>
+  <polygon points="920,520 940,508 960,520 960,544 940,556 920,544" fill="none" stroke="#2ecaa0" stroke-opacity="0.07" stroke-width="1.5"/>
+
+  <!-- Small pulse rings -->
+  <circle cx="320" cy="280" r="20" fill="none" stroke="#2ecaa0" stroke-opacity="0.06" stroke-width="1"/>
+  <circle cx="1200" cy="280" r="22" fill="none" stroke="#1a3a6c" stroke-opacity="0.06" stroke-width="1"/>
+  <circle cx="1100" cy="450" r="18" fill="none" stroke="#2ecaa0" stroke-opacity="0.05" stroke-width="1"/>
+</svg>

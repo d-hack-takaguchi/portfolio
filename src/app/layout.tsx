@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ConsultPro | ITコンサルティング",
+  title: "DxHack | 髙口 和弥 - DX推進コンサルタント・ITコンサルタント",
   description:
-    "クラウドネイティブ・アーキテクチャの設計から実装まで。DX推進のパートナーとして、貴社のIT戦略を成功に導きます。",
+    "業務分析・要件定義からローコード開発・生成AI導入まで。構想から実装まで一気通貫でDXを推進するフリーランスコンサルタント。",
 };
 
 export default function RootLayout({

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a3a6c"/>
+      <stop offset="100%" stop-color="#2a6cb0"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="300" fill="url(#bg)"/>
+  <!-- Excel sheet (before) -->
+  <rect x="60" y="70" width="120" height="160" rx="8" fill="white" opacity="0.15"/>
+  <rect x="72" y="90" width="96" height="8" rx="2" fill="white" opacity="0.3"/>
+  <rect x="72" y="106" width="96" height="8" rx="2" fill="white" opacity="0.2"/>
+  <rect x="72" y="122" width="96" height="8" rx="2" fill="white" opacity="0.2"/>
+  <rect x="72" y="138" width="60" height="8" rx="2" fill="white" opacity="0.2"/>
+  <rect x="72" y="154" width="80" height="8" rx="2" fill="white" opacity="0.2"/>
+  <rect x="72" y="170" width="96" height="8" rx="2" fill="white" opacity="0.2"/>
+  <rect x="72" y="186" width="50" height="8" rx="2" fill="white" opacity="0.2"/>
+  <!-- Arrow -->
+  <path d="M220 150 L280 150" stroke="white" stroke-width="3" opacity="0.5" stroke-linecap="round"/>
+  <path d="M270 140 L285 150 L270 160" stroke="white" stroke-width="3" opacity="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Kintone app (after) -->
+  <rect x="320" y="55" width="220" height="190" rx="12" fill="white" opacity="0.15"/>
+  <rect x="332" y="68" width="196" height="28" rx="6" fill="white" opacity="0.1"/>
+  <circle cx="346" cy="82" r="6" fill="#2ecaa0" opacity="0.6"/>
+  <rect x="360" y="78" width="60" height="8" rx="2" fill="white" opacity="0.35"/>
+  <!-- Cards in Kintone -->
+  <rect x="332" y="106" width="92" height="60" rx="6" fill="white" opacity="0.12"/>
+  <rect x="344" y="118" width="68" height="6" rx="2" fill="white" opacity="0.25"/>
+  <rect x="344" y="130" width="50" height="6" rx="2" fill="white" opacity="0.15"/>
+  <circle cx="352" cy="150" r="5" fill="#2ecaa0" opacity="0.4"/>
+  <rect x="436" y="106" width="92" height="60" rx="6" fill="white" opacity="0.12"/>
+  <rect x="448" y="118" width="68" height="6" rx="2" fill="white" opacity="0.25"/>
+  <rect x="448" y="130" width="50" height="6" rx="2" fill="white" opacity="0.15"/>
+  <circle cx="456" cy="150" r="5" fill="#2ecaa0" opacity="0.4"/>
+  <rect x="332" y="176" width="92" height="60" rx="6" fill="white" opacity="0.12"/>
+  <rect x="344" y="188" width="68" height="6" rx="2" fill="white" opacity="0.25"/>
+  <rect x="344" y="200" width="50" height="6" rx="2" fill="white" opacity="0.15"/>
+  <rect x="436" y="176" width="92" height="60" rx="6" fill="white" opacity="0.12"/>
+  <rect x="448" y="188" width="68" height="6" rx="2" fill="white" opacity="0.25"/>
+  <rect x="448" y="200" width="50" height="6" rx="2" fill="white" opacity="0.15"/>
+  <!-- Decorative circles -->
+  <circle cx="560" cy="40" r="20" fill="white" opacity="0.04"/>
+  <circle cx="30" cy="260" r="30" fill="white" opacity="0.04"/>
+</svg>
