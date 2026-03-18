@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: "DxHack | 髙口 和弥 - DX推進コンサルタント・ITコンサルタント",
   description:
     "業務分析・要件定義からローコード開発・生成AI導入まで。構想から実装まで一気通貫でDXを推進するフリーランスコンサルタント。",
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
