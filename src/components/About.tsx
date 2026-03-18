@@ -117,7 +117,7 @@ export default function About() {
                   "Kintone",
                   "MS365",
                   "GoogleWorkSpace",
-                  "RPA"
+                  "RPA",
                   "PowerAutomate",
                   "OCR",
                   "Claude / ClaudeCode",
