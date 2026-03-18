@@ -13,8 +13,7 @@ export default function Footer() {
             className="h-8 w-auto opacity-60"
           />
           <p className="text-sm text-slate-500">
-            &copy; {new Date().getFullYear()} DxHack - Takaguchi Kazuya. All
-            rights reserved.
+            &copy; {new Date().getFullYear()} D-Hack. All rights reserved.
           </p>
         </div>
       </div>
