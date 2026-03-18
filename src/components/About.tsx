@@ -99,7 +99,8 @@ export default function About() {
               </div>
 
               <p className="mt-6 leading-relaxed text-slate-600">
-                サントリーグループ出身。事業会社での経験を活かし、業務分析・要件定義からローコード開発、
+                サントリーグループのコンタクセンター運営事業会社での経験を活かし、
+                業務分析・要件定義からローコード開発、
                 生成AI導入支援まで幅広く対応。行政機関・上場企業グループ・大手SIerなど
                 多様な業種での支援実績を持ち、現場に寄り添ったDX推進が得意です。
               </p>
@@ -112,10 +113,21 @@ export default function About() {
               <div className="mt-6 flex flex-wrap gap-2">
                 {[
                   "PowerApps",
+                  "AppSheet",
                   "Kintone",
-                  "SharePoint",
-                  "Power Automate",
-                  "Claude / ChatGPT",
+                  "MS365",
+                  "GoogleWorkSpace",
+                  "RPA"
+                  "PowerAutomate",
+                  "OCR",
+                  "Claude / ClaudeCode",
+                  "GenSpark",
+                  "powerquery",
+                  "VBA",
+                  "GAS",
+                  "HTML",
+                  "JavaScript",
+                  "jSON",
                   "React",
                   "TypeScript",
                   "BPR",
