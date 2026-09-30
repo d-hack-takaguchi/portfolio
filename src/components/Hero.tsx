@@ -40,6 +40,7 @@ export default function Hero() {
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">
             業務分析・要件定義からローコード開発・生成AI導入まで。
             現場を知るコンサルタントが、貴社の課題に最適なソリューションをご提供します。
+            いまはAIキャラクターとAIショートドラマの制作にも取り組み、作る仕組みごと形にしています。
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -58,6 +59,12 @@ export default function Hero() {
               className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-8 py-3.5 text-sm font-semibold text-slate-700 transition hover:border-[#2ecaa0] hover:shadow-sm"
             >
               実績・事例を見る
+            </a>
+            <a
+              href="#creator"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-8 py-3.5 text-sm font-semibold text-slate-700 transition hover:border-[#2ecaa0] hover:shadow-sm"
+            >
+              AIクリエイター活動
             </a>
           </div>
         </motion.div>

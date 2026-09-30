@@ -14,10 +14,10 @@ import {
 const career = [
   {
     period: "現在",
-    role: "フリーランス DX推進コンサルタント / ITコンサルタント",
+    role: "フリーランス DX推進コンサルタント / ITコンサルタント / AIクリエイター",
     org: "DxHack（個人事業）",
     description:
-      "ローコード開発・生成AI導入・業務自動化など、構想から実装まで一気通貫でDX推進を支援。",
+      "ローコード開発・生成AI導入・業務自動化に加え、AIキャラクター・AIショートドラマの制作と制作ラインの構築に取り組む。",
   },
   {
     period: "前職",
@@ -84,7 +84,7 @@ export default function About() {
                 Kazuya Takaguchi
               </p>
               <p className="mt-1 text-sm text-slate-500">
-                DX推進コンサルタント / ITコンサルタント
+                DX推進コンサルタント / ITコンサルタント / AIクリエイター
               </p>
 
               <div className="mt-4 flex flex-wrap gap-4 text-sm text-slate-600">
@@ -99,7 +99,7 @@ export default function About() {
               </div>
 
               <p className="mt-6 leading-relaxed text-slate-600">
-                サントリーグループのコンタクセンター運営事業会社での経験を活かし、
+                サントリーグループのコンタクトセンター運営事業会社での経験を活かし、
                 業務分析・要件定義からローコード開発、
                 生成AI導入支援まで幅広く対応。行政機関・上場企業グループ・大手SIerなど
                 多様な業種での支援実績を持ち、現場に寄り添ったDX推進が得意です。
@@ -107,6 +107,12 @@ export default function About() {
               <p className="mt-3 leading-relaxed text-slate-600">
                 「技術」と「業務理解」の両軸を武器に、お客様が本当に使えるシステムを
                 一緒に作り上げます。
+              </p>
+              <p className="mt-3 leading-relaxed text-slate-600">
+                2026年からはAIクリエイターとしても活動。AIキャラクター「AI解体新書」や
+                AIショートドラマを発信しながら、企画から公開までを自動化する
+                制作アプリ「EMBLAZE」を自作しています。自分で作って使い込んだ
+                生成AIの知見を、お客様の業務への導入にも還元しています。
               </p>
 
               {/* Skill tags */}
@@ -121,6 +127,10 @@ export default function About() {
                   "PowerAutomate",
                   "OCR",
                   "Claude / ClaudeCode",
+                  "ChatGPT",
+                  "Next.js",
+                  "AI映像生成",
+                  "GitHub Actions",
                   "GenSpark",
                   "powerquery",
                   "VBA",

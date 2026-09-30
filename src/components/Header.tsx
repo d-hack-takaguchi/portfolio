@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "#features", label: "サービス" },
+  { href: "#creator", label: "AIクリエイター" },
   { href: "#about", label: "About Me" },
   { href: "#cases", label: "実績・事例" },
   { href: "#techstack", label: "技術スタック" },

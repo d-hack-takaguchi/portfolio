@@ -6,7 +6,7 @@ import {
   Blocks,
   Bot,
   FileSearch,
-  Code,
+  Clapperboard,
   Users,
 } from "lucide-react";
 
@@ -31,15 +31,15 @@ const features = [
   },
   {
     icon: FileSearch,
-    title: "RPA・OCR自動化",
+    title: "RPA・OCR自動化・Web開発",
     description:
-      "Power Automate Desktop・VBA・AI-OCRを活用した業務自動化。帳票処理やデータ入力の工数を大幅に削減します。",
+      "Power Automate Desktop・VBA・AI-OCRによる業務自動化と、React/TypeScriptによるWebアプリ開発。要件定義から画面設計まで対応します。",
   },
   {
-    icon: Code,
-    title: "システム・Web開発",
+    icon: Clapperboard,
+    title: "AIコンテンツ制作・制作ライン構築",
     description:
-      "React/TypeScriptによるWebアプリ開発、要件定義・画面設計・技術選定支援まで、開発フェーズを幅広くカバーします。",
+      "AIキャラクター・ショートドラマの制作と、企画から公開までを自動化する制作ラインの設計・構築。SNS発信の仕組みづくりまで支援します。",
   },
   {
     icon: Users,
