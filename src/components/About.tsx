@@ -11,23 +11,6 @@ import {
   Calendar,
 } from "lucide-react";
 
-const career = [
-  {
-    period: "現在",
-    role: "フリーランス DX推進コンサルタント / ITコンサルタント / AIクリエイター",
-    org: "DxHack（個人事業）",
-    description:
-      "ローコード開発・生成AI導入・業務自動化に加え、AIキャラクター・AIショートドラマの制作と制作ラインの構築に取り組む。",
-  },
-  {
-    period: "前職",
-    role: "DX推進コンサルタント",
-    org: "コンサルティングファーム",
-    description:
-      "行政機関・製造業・SIerを対象にBPR、ローコード開発、システム導入支援を担当。",
-  },
-];
-
 const values = [
   {
     icon: Heart,
