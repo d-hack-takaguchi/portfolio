@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
+import AICreator from "@/components/AICreator";
 import About from "@/components/About";
 import CaseStudies from "@/components/CaseStudies";
 import TechStack from "@/components/TechStack";
@@ -14,8 +15,9 @@ export default function Home() {
       <main>
         <Hero />
         <Features />
-        <About />
         <CaseStudies />
+        <AICreator />
+        <About />
         <TechStack />
         <Contact />
       </main>

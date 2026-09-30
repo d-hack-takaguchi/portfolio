@@ -8,6 +8,9 @@ import {
   Bot,
   Cloud,
   FileText,
+  Clapperboard,
+  Megaphone,
+  Workflow,
 } from "lucide-react";
 
 const stacks = [
@@ -24,7 +27,7 @@ const stacks = [
   {
     category: "開発言語・フレームワーク",
     icon: Code,
-    items: ["React", "JavaScript", "TypeScript", "HTML/CSS", "VBA", "Python"],
+    items: ["Next.js", "React", "JavaScript", "TypeScript", "HTML/CSS", "VBA", "Python"],
   },
   {
     category: "RPA・自動化",
@@ -40,6 +43,21 @@ const stacks = [
     category: "ドキュメント・設計",
     icon: FileText,
     items: ["業務フロー図", "ユーザーストーリー", "提案書", "技術検証レポート"],
+  },
+  {
+    category: "AI映像・画像生成",
+    icon: Clapperboard,
+    items: ["Seedance 2.5", "MiniMax H3", "Blender", "ChatGPT（画像）", "fal", "Higgsfield"],
+  },
+  {
+    category: "制作ライン自動化",
+    icon: Workflow,
+    items: ["Claude Code", "Codex（GPT-6 Astra）", "GitHub Actions", "Vercel"],
+  },
+  {
+    category: "発信・SNS運用",
+    icon: Megaphone,
+    items: ["Instagram", "Threads", "X", "note"],
   },
 ];
 

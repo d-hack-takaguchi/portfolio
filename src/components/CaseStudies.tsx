@@ -41,6 +41,10 @@ export default function CaseStudies() {
         <span className="mb-8 block text-center text-sm font-semibold tracking-wide text-[#2ecaa0]">
           実績・事例
         </span>
+        <h2 className="mx-auto mb-12 max-w-3xl text-center text-3xl font-bold leading-snug text-slate-900 md:text-4xl">
+          DX・AX推進支援の
+          <span className="text-brand-gradient">具体的な実績</span>
+        </h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {cases.map((c, i) => (
             <motion.div
