@@ -77,12 +77,14 @@ export default function SiteExperience() {
 
   useEffect(() => {
     if (!matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    // 動きを減らす設定では、ボタンが引き寄せられる動きも止める
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const move = (event: MouseEvent) => {
       cursorX.set(event.clientX);
       cursorY.set(event.clientY);
       const interactive = (event.target as HTMLElement).closest<HTMLElement>("a, button");
       cursorSize.set(interactive ? 56 : 12);
-      if (interactive) {
+      if (interactive && !reduced) {
         const box = interactive.getBoundingClientRect();
         interactive.setAttribute("data-magnetic", "");
         interactive.style.transform = `translate(${Math.max(-8, Math.min(8, (event.clientX - box.left - box.width / 2) * .18))}px, ${Math.max(-8, Math.min(8, (event.clientY - box.top - box.height / 2) * .18))}px)`;

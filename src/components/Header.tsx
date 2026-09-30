@@ -46,8 +46,9 @@ export default function Header() {
       className={`fixed top-[3px] z-50 w-full border-b backdrop-blur-xl transition-colors duration-500 ${dark ? "border-white/10 bg-[#0a0f1a]/90" : "border-slate-900/10 bg-[#f4f6f9]/88"}`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3" aria-label="メインナビゲーション">
-        <a href="#" className="flex items-center gap-2 transition-transform">
-          <Image src="/logo.png" alt="DxHack" width={280} height={70} className={`h-10 w-auto md:h-11 ${dark ? "brightness-0 invert" : ""}`} priority />
+        <a href="#" className={`flex items-center gap-2 rounded-lg transition-colors ${dark ? "bg-white px-2" : ""}`}>
+          {/* ロゴは白地の PNG。filter で反転すると白い箱になるので、暗いヘッダーでは白い台に載せる */}
+          <Image src="/logo.png" alt="DxHack" width={280} height={70} className="h-10 w-auto md:h-11" priority />
         </a>
 
         <ul className="hidden items-center gap-6 lg:flex">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import MotionProvider from "@/components/MotionProvider";
 
 const notoSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: ["400", "500", "700", "900"], variable: "--font-noto-sans-jp", display: "swap" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["700"], variable: "--font-space-grotesk", display: "swap" });
@@ -22,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${notoSansJP.variable} ${spaceGrotesk.variable} antialiased`}>{children}</body>
+      <body className={`${notoSansJP.variable} ${spaceGrotesk.variable} antialiased`}><MotionProvider>{children}</MotionProvider></body>
     </html>
   );
 }
