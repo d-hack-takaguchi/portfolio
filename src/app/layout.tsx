@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DxHack | 髙口 和弥 - DX推進コンサルタント / AIクリエイター",
+  title: "DxHack | 髙口 和弥 - DX・AX推進コンサルタント / AIクリエイター",
   description:
     "業務分析・要件定義からローコード開発・生成AI導入まで、構想から実装まで一気通貫でDXを推進。AIキャラクター・AIショートドラマの制作と、制作ラインの構築にも取り組むフリーランスコンサルタント。",
   icons: {

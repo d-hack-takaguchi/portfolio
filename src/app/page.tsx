@@ -15,9 +15,9 @@ export default function Home() {
       <main>
         <Hero />
         <Features />
+        <CaseStudies />
         <AICreator />
         <About />
-        <CaseStudies />
         <TechStack />
         <Contact />
       </main>

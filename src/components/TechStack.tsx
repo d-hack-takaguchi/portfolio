@@ -47,12 +47,12 @@ const stacks = [
   {
     category: "AI映像・画像生成",
     icon: Clapperboard,
-    items: ["ChatGPT（画像）", "fal", "Higgsfield", "Blender"],
+    items: ["Seedance 2.5", "MiniMax H3", "Blender", "ChatGPT（画像）", "fal", "Higgsfield"],
   },
   {
     category: "制作ライン自動化",
     icon: Workflow,
-    items: ["Claude Code", "Codex", "GitHub Actions", "Vercel"],
+    items: ["Claude Code", "Codex（GPT-6 Astra）", "GitHub Actions", "Vercel"],
   },
   {
     category: "発信・SNS運用",

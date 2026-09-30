@@ -33,7 +33,7 @@ export default function Hero() {
             構想から実装まで
             <br />
             <span className="text-brand-gradient">
-              一気通貫でDXを推進
+              一気通貫でDX・AXを推進
             </span>
           </h1>
 

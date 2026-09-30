@@ -13,7 +13,7 @@ import {
 const features = [
   {
     icon: Sparkles,
-    title: "DX推進コンサルティング",
+    title: "DX・AX推進コンサルティング",
     description:
       "課題ヒアリングからロードマップ策定、実行支援まで。As-Is/To-Be分析に基づくBPR提案で、DXの全体像を描きます。",
   },

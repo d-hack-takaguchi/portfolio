@@ -67,7 +67,7 @@ export default function About() {
                 Kazuya Takaguchi
               </p>
               <p className="mt-1 text-sm text-slate-500">
-                DX推進コンサルタント / ITコンサルタント / AIクリエイター
+                DX・AX推進コンサルタント / ITコンサルタント / AIクリエイター
               </p>
 
               <div className="mt-4 flex flex-wrap gap-4 text-sm text-slate-600">
@@ -112,7 +112,9 @@ export default function About() {
                   "Claude / ClaudeCode",
                   "ChatGPT",
                   "Next.js",
-                  "AI映像生成",
+                  "Seedance",
+                  "MiniMax H3",
+                  "Blender",
                   "GitHub Actions",
                   "GenSpark",
                   "powerquery",
