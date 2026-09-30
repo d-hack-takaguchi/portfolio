@@ -1,6 +1,6 @@
 "use client";
 
-import { MouseEvent, useRef } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
@@ -25,8 +25,11 @@ function CaseCard({ item, index }: { item: typeof cases[number]; index: number }
 
 export default function CaseStudies() {
   const ref = useRef<HTMLElement>(null); const reduce = useReducedMotion();
+  // 横に流すのはデスクトップだけ。スマホは縦積みなので、ここで動かすとカードが画面の外へずれる
+  const [desktop, setDesktop] = useState(false);
+  useEffect(() => { const mq = matchMedia("(min-width: 768px)"); const on = () => setDesktop(mq.matches); on(); mq.addEventListener("change", on); return () => mq.removeEventListener("change", on); }, []);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  const x = useTransform(scrollYProgress, [0,1], ["0%", reduce ? "0%" : "-68%"]);
+  const x = useTransform(scrollYProgress, [0,1], ["0%", reduce || !desktop ? "0%" : "-68%"]);
   return <section ref={ref} id="cases" className="bg-[#f4f6f9] py-24 md:h-[300vh] md:py-0">
     <div className="mx-auto max-w-6xl px-6 md:sticky md:top-0 md:flex md:h-screen md:flex-col md:justify-center md:overflow-hidden">
       <div className="mb-10 md:mb-12"><span className="mb-4 block text-sm font-semibold tracking-wide text-[#2ecaa0]">実績・事例</span><h2 className="max-w-3xl text-3xl font-bold leading-snug text-slate-900 md:text-4xl">DX・AX推進支援の<span className="text-brand-gradient">具体的な実績</span></h2></div>
