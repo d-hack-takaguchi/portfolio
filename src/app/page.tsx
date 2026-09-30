@@ -7,10 +7,12 @@ import CaseStudies from "@/components/CaseStudies";
 import TechStack from "@/components/TechStack";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import SiteExperience from "@/components/SiteExperience";
 
 export default function Home() {
   return (
     <>
+      <SiteExperience />
       <Header />
       <main>
         <Hero />

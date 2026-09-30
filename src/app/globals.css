@@ -1,25 +1,91 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f4f6f9;
   --foreground: #0f172a;
   --primary: #1a3a6c;
-  --primary-dark: #122b52;
+  --primary-dark: #0f2547;
   --accent: #2ecaa0;
   --accent-dark: #25a886;
   --accent-light: #d1fae5;
+  --blueprint-paper: #f4f6f9;
+  --blueprint-line: rgba(26, 58, 108, 0.08);
+  --render-black: #0a0f1a;
+  --render-accent: #ffb84d;
+  --render-foreground: #e8edf5;
+  --hairline: rgba(15, 23, 42, 0.12);
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
   --gradient-start: #1a3a6c;
   --gradient-end: #2ecaa0;
 }
 
+@theme inline {
+  --color-brand-navy: var(--primary);
+  --color-brand-navy-dark: var(--primary-dark);
+  --color-brand-mint: var(--accent);
+  --color-blueprint-paper: var(--blueprint-paper);
+  --color-render-black: var(--render-black);
+  --color-render-amber: var(--render-accent);
+  --font-sans: var(--font-noto-sans-jp);
+  --font-display: var(--font-space-grotesk);
+}
+
+* { box-sizing: border-box; }
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-noto-sans-jp), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.9;
+  overflow-x: clip;
 }
 
-html {
-  scroll-behavior: smooth;
+h1, h2 {
+  font-family: var(--font-space-grotesk), var(--font-noto-sans-jp), sans-serif;
+  line-height: 1.15;
+}
+
+h1 { font-size: clamp(2.75rem, 8vw, 7rem); }
+h2 { font-size: clamp(2rem, 5vw, 4rem); }
+
+time, [data-numeric] { font-variant-numeric: tabular-nums; }
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+::selection { background: rgba(46, 202, 160, .3); }
+
+.custom-cursor { display: none; }
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  .custom-cursor { display: block; }
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 1.25rem, 0);
+  transition: opacity .75s var(--ease-out), transform .75s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal].is-revealed { opacity: 1; transform: translate3d(0, 0, 0); }
+
+.reveal-line { display: block; overflow: hidden; }
+.reveal-line > span {
+  display: block;
+  transform: translateY(110%);
+  transition: transform .85s var(--ease-out);
+}
+.reveal-line.is-revealed > span { transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+  [data-reveal], .reveal-line > span { opacity: 1; transform: none; }
 }
 
 /* Utility for brand gradient text */
