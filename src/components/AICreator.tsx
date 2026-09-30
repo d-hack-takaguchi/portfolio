@@ -3,20 +3,11 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
-  Clapperboard,
-  Users,
-  Workflow,
-  ArrowUpRight,
   Instagram,
   BookOpen,
   AtSign,
 } from "lucide-react";
-
-const stats = [
-  { value: "0 → 約7,500", label: "フォロワー0・投稿開始から16日間の累計再生回数" },
-  { value: "23本", label: "同期間に公開したリール（AI解体新書・AIショートドラマ）" },
-  { value: "約3,200", label: "最も伸びた1本（AIショートドラマ「お会計」）の再生回数" },
-];
+import { CreatorStats, CreatorWorks } from "./CreatorPhase3";
 
 const principles = [
   {
@@ -46,35 +37,6 @@ const principles = [
   },
 ];
 
-const works = [
-  {
-    icon: Users,
-    label: "AIキャラクター",
-    title: "AI解体新書",
-    description:
-      "生成AIでキャラクターを設計し、顔・体格・髪・職業までを1体ずつ「プロファイル」として定義。40体以上のAIタレント候補を、Instagramのリールで連載形式で公開しています。",
-    href: "https://www.instagram.com/kazuya_dhack_ai",
-    cta: "Instagramで見る",
-  },
-  {
-    icon: Clapperboard,
-    label: "AIショートドラマ",
-    title: "お会計 / 退職代行",
-    description:
-      "AIタレントが出演するショートドラマ。企画・脚本・絵コンテ・生成・編集までを一本のラインで制作。第1作「お会計」は公開から約3日で約3,200回再生されました。",
-    href: "https://www.instagram.com/reel/DdvqzMDJ6GC/",
-    cta: "「お会計」を見る",
-  },
-  {
-    icon: Workflow,
-    label: "制作アプリ",
-    title: "EMBLAZE",
-    description:
-      "ネタを送って承認するだけでAIショートドラマができる、1人用の動画制作アプリ。人は判断だけ、手を動かすのはAI。直近の4カット・42秒の作品は、自分の作業約10分・生成費用720円でした。",
-    href: "https://note.com/kazuya_dhack_ai/n/na5b54681d0d0",
-    cta: "仕組みを読む（note）",
-  },
-];
 
 const steps = [
   "ネタを1行送る",
@@ -113,7 +75,7 @@ export default function AICreator() {
   const gridY = useTransform(scrollYProgress, [0, 1], [reducedMotion ? 0 : -70, 0]);
 
   return (
-    <section ref={sectionRef} id="creator" className="relative overflow-hidden bg-[#0a0f1a] pb-24 pt-40">
+    <section ref={sectionRef} id="creator" className="creator-section relative overflow-hidden bg-[#0a0f1a] pb-24 pt-40">
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-72 overflow-hidden">
         <motion.div className="absolute -inset-x-20 -top-40 h-[440px] origin-top [transform:perspective(500px)_rotateX(62deg)]" style={{ y: gridY }}>
           <div className="absolute inset-0 bg-[linear-gradient(rgba(232,237,245,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(232,237,245,.12)_1px,transparent_1px)] bg-[size:42px_42px]" />
@@ -139,59 +101,8 @@ export default function AICreator() {
           作品を出すたびにメイキングも公開し、仕組みそのものを見せながら育てています。
         </p>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-3">
-          {stats.map((st) => (
-            <div
-              key={st.label}
-              className="rounded-2xl border border-slate-200 bg-white p-6 text-center"
-            >
-              <div className="text-brand-gradient text-3xl font-extrabold md:text-4xl">
-                {st.value}
-              </div>
-              <p className="mt-2 text-xs leading-relaxed text-slate-500">
-                {st.label}
-              </p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-3 text-center text-xs text-slate-400">
-          2026年9月14日に投稿を開始（Instagram、時点：9月29日）
-        </p>
-
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
-          {works.map((w, i) => (
-            <motion.a
-              key={w.title}
-              href={w.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-[#2ecaa0]/40 hover:shadow-lg"
-            >
-              <div className="mb-4 flex items-center gap-3">
-                <div className="rounded-xl bg-gradient-to-br from-[#1a3a6c]/10 to-[#2ecaa0]/10 p-3 text-[#1a3a6c]">
-                  <w.icon size={24} />
-                </div>
-                <span className="text-xs font-medium text-slate-500">
-                  {w.label}
-                </span>
-              </div>
-              <h3 className="mb-2 text-lg font-semibold text-slate-900">
-                {w.title}
-              </h3>
-              <p className="mb-4 flex-1 text-sm leading-relaxed text-slate-600">
-                {w.description}
-              </p>
-              <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#1a3a6c] transition group-hover:text-[#2ecaa0]">
-                {w.cta}
-                <ArrowUpRight size={14} />
-              </span>
-            </motion.a>
-          ))}
-        </div>
+        <CreatorStats />
+        <CreatorWorks />
 
         {/* Production line */}
         <motion.div

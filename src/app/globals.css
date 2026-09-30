@@ -104,3 +104,34 @@ html.lenis, html.lenis body { height: auto; }
 .bg-brand-gradient {
   background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
 }
+
+.feature-card::before {
+  position: absolute; inset: -55%; content: ""; opacity: 0;
+  background: conic-gradient(from 0deg, transparent 72%, var(--accent), transparent 88%);
+  transition: opacity .4s var(--ease-out);
+}
+.feature-card:hover::before { opacity: 1; animation: feature-border 2.4s linear infinite; }
+.feature-icon path, .feature-icon circle, .feature-icon rect, .feature-icon line, .art-lines path, .art-lines rect, .art-lines circle {
+  stroke-dasharray: 1; stroke-dashoffset: 0;
+}
+.feature-card:hover .feature-icon path, .feature-card:hover .feature-icon circle, .feature-card:hover .feature-icon rect,
+.feature-card:hover .feature-icon line, .group:hover .art-lines path, .group:hover .art-lines rect, .group:hover .art-lines circle {
+  animation: redraw 1.35s var(--ease-out);
+}
+.chart-pulse { transform-box: fill-box; transform-origin: center; animation: chart-pulse 1.8s ease-out infinite; }
+@keyframes feature-border { to { transform: rotate(1turn); } }
+@keyframes redraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes chart-pulse { 0% { opacity: .9; transform: scale(.4); } 80%,100% { opacity: 0; transform: scale(2.2); } }
+
+.creator-section::after {
+  position: absolute; inset: 0; z-index: 0; content: ""; pointer-events: none; opacity: .05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #cases { height: auto; }
+  #cases > div { position: static; height: auto; overflow: visible; }
+  #cases [style*="translate"] { transform: none !important; }
+  #cases .cases-track { width: auto; flex-direction: column; padding-right: 0; }
+  .chart-pulse { opacity: 1; transform: none; }
+}
