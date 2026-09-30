@@ -121,7 +121,7 @@ export default function AICreator() {
             <div className="h-full w-[calc(100vw+10rem)] bg-[linear-gradient(rgba(46,202,160,.3)_1px,transparent_1px),linear-gradient(90deg,rgba(255,184,77,.26)_1px,transparent_1px)] bg-[size:42px_42px]" />
           </motion.div>
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f4f6f9] via-[#0a0f1a]/55 to-[#0a0f1a]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-[#0a0f1a]/55 to-[#0a0f1a]" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6">

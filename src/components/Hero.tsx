@@ -106,8 +106,9 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(244,246,249,.96),rgba(244,246,249,.62)_48%,rgba(244,246,249,.2)),radial-gradient(circle_at_50%_42%,transparent_0%,rgba(244,246,249,.38)_70%)]" />
 
       <div className="relative mx-auto w-full max-w-7xl px-6 py-28 md:px-10">
-        <div className="max-w-5xl">
-          <h1 aria-label={`${firstLine} ${secondLineStart}${secondLineAccent}${secondLineEnd}`} className="font-display font-bold tracking-[-.055em] text-[#0f172a]">
+        <div className="max-w-6xl">
+          <h1 aria-label={`${firstLine} ${secondLineStart}${secondLineAccent}${secondLineEnd}`} className="font-display text-[clamp(2rem,8vw,6.25rem)] font-bold tracking-[-.055em] text-[#0f172a]">
+            {/* 2行目（約10.4文字分）が 390px 幅の余白内にも収まる大きさ。nowrap なので、はみ出すと画面の外で切れる */}
             <span className="block whitespace-nowrap"><AnimatedCharacters text={firstLine} /></span>
             <span className="block whitespace-nowrap">
               <AnimatedCharacters text={secondLineStart} offset={firstLine.length} />
