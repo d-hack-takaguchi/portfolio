@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
   Clapperboard,
   Users,
@@ -105,18 +106,34 @@ const links = [
 ];
 
 export default function AICreator() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "start start"] });
+  const colorWidth = useTransform(scrollYProgress, [0, .7], [reducedMotion ? "100%" : "0%", "100%"]);
+  const gridY = useTransform(scrollYProgress, [0, 1], [reducedMotion ? 0 : -70, 0]);
+
   return (
-    <section id="creator" className="bg-slate-50 py-24">
-      <div className="mx-auto max-w-6xl px-6">
+    <section ref={sectionRef} id="creator" className="relative overflow-hidden bg-[#0a0f1a] pb-24 pt-40">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-72 overflow-hidden">
+        <motion.div className="absolute -inset-x-20 -top-40 h-[440px] origin-top [transform:perspective(500px)_rotateX(62deg)]" style={{ y: gridY }}>
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(232,237,245,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(232,237,245,.12)_1px,transparent_1px)] bg-[size:42px_42px]" />
+          <motion.div className="absolute inset-0 overflow-hidden" style={{ width: colorWidth }}>
+            <div className="h-full w-[calc(100vw+10rem)] bg-[linear-gradient(rgba(46,202,160,.3)_1px,transparent_1px),linear-gradient(90deg,rgba(255,184,77,.26)_1px,transparent_1px)] bg-[size:42px_42px]" />
+          </motion.div>
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-[#0a0f1a]/55 to-[#0a0f1a]" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-6">
         <span className="mb-4 block text-center text-sm font-semibold tracking-wide text-[#2ecaa0]">
           AIクリエイター活動
         </span>
-        <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold leading-snug text-slate-900 md:text-4xl">
+        <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold leading-snug text-[#e8edf5] md:text-4xl">
           AIで「作品」を作り、
           <br className="hidden sm:block" />
-          <span className="text-brand-gradient">作る仕組みまで自分で組む</span>
+          <span className="bg-gradient-to-r from-[#2ecaa0] to-[#ffb84d] bg-clip-text text-transparent">作る仕組みまで自分で組む</span>
         </h2>
-        <p className="mx-auto mt-5 max-w-2xl text-center leading-relaxed text-slate-600">
+        <p className="mx-auto mt-5 max-w-2xl text-center leading-relaxed text-slate-300">
           2026年9月から、AIキャラクターとAIショートドラマの制作・発信を始めました。
           コンサルで培った業務設計と実装の力を、クリエイティブの制作ラインづくりにも使っています。
           作品を出すたびにメイキングも公開し、仕組みそのものを見せながら育てています。
