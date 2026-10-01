@@ -73,14 +73,15 @@ export function Principles() {
   const imageRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({ target:imageRef, offset:["start end","end center"] });
-  const clipPath = useTransform(scrollYProgress,[0,.45,1],["inset(0 100% 0 0)","inset(0 50% 0 0)","inset(0 0% 0 0)"]);
+  const clipPath = useTransform(scrollYProgress,[0,1],["inset(0 50% 0 50%)","inset(0 0% 0 50%)"]);
+  // 左半分（AIっぽい）はグレーのまま。右半分（再現性がある）だけ左から右へ色がつく（発注書の指定）
   const brightness = useTransform(scrollYProgress,[.93,.97,1],[1,1.15,1]);
   const filter = useTransform(brightness, value => `brightness(${value})`);
   const alt = "AIっぽい。顔が毎回変わる。同じ人物なのに、顔立ち・輪郭・雰囲気がバラバラ。髪型・ライティング・質感の一貫性がない。どこか不自然で、作り物っぽさを感じる。再現性がある。同じ人物を安定して再現。どのカットでも同じ人物だと分かる。顔立ち・輪郭・髪型・雰囲気が一貫している。自然で安定したクオリティで、実在感がある。";
   return <div className="mt-24">
     <span className="block text-center text-sm font-semibold tracking-wide text-[#2ecaa0]">SNS向けAI動画制作で大切にしていること</span>
     <div className="film-strip mt-8 overflow-hidden border-y border-white/10 py-12">
-      <div className="grid gap-6 md:grid-cols-5">{principles.map((p,i)=><motion.article key={p.title} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}} transition={{delay:i*.06}} className="rounded-2xl border border-white/10 bg-white/[.045] p-5"><h3 className="font-semibold leading-relaxed text-[#e8edf5]">{p.title}</h3><p className="mt-3 text-sm leading-[1.85] text-slate-400">{p.description}</p></motion.article>)}</div>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{principles.map((p,i)=><motion.article key={p.title} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}} transition={{delay:i*.06}} className="rounded-2xl border border-white/10 bg-white/[.045] p-5"><h3 className="font-semibold leading-relaxed text-[#e8edf5]">{p.title}</h3><p className="mt-3 text-sm leading-[1.85] text-slate-400">{p.description}</p></motion.article>)}</div>
     </div>
     <div ref={imageRef} className="relative mt-8 aspect-[1672/940] overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/5">
       <Image src="/creator/reproducibility.webp" alt={alt} fill sizes="(max-width: 768px) 100vw, 1152px" className="object-cover grayscale"/>

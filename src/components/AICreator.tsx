@@ -35,8 +35,9 @@ export default function AICreator() {
   const colorWidth = useTransform(scrollYProgress, [0, .7], [reducedMotion ? "100%" : "0%", "100%"]);
   const gridY = useTransform(scrollYProgress, [0, 1], [reducedMotion ? 0 : -70, 0]);
 
+  // overflow-hidden だと sticky（1本ができるまで）が効かず真っ暗な画面が続く。横だけ切る
   return (
-    <section ref={sectionRef} id="creator" className="creator-section relative overflow-hidden bg-[#0a0f1a] pb-24 pt-40">
+    <section ref={sectionRef} id="creator" className="creator-section relative overflow-x-clip bg-[#0a0f1a] pb-24 pt-40">
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-72 overflow-hidden">
         <motion.div className="absolute -inset-x-20 -top-40 h-[440px] origin-top [transform:perspective(500px)_rotateX(62deg)]" style={{ y: gridY }}>
           <div className="absolute inset-0 bg-[linear-gradient(rgba(232,237,245,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(232,237,245,.12)_1px,transparent_1px)] bg-[size:42px_42px]" />
