@@ -9,3 +9,5 @@
 - Phase 2: Act 1 から Act 2 への暗転・カラー化境界と `prefers-reduced-motion` 対応
 - Phase 3: サービスのスタッガー、実績の横スクロール、AIクリエイターの数字・折れ線・作品スマホフレーム
 - Phase 3: 指定データ・既存文面・リンクを維持し、外部動画・画像を使わない SVG 作品表示と `prefers-reduced-motion` 対応
+- Phase 4: 8工程のスクロール・ストーリー、フィルムストリップと比較画像のカラー化、行きついた考えのスクロール演出
+- Phase 4: モバイルの縦積み、比較画像の全文代替テキスト、`prefers-reduced-motion` の静止表示
