@@ -11,3 +11,5 @@
 - Phase 3: 指定データ・既存文面・リンクを維持し、外部動画・画像を使わない SVG 作品表示と `prefers-reduced-motion` 対応
 - Phase 4: 8工程のスクロール・ストーリー、フィルムストリップと比較画像のカラー化、行きついた考えのスクロール演出
 - Phase 4: モバイルの縦積み、比較画像の全文代替テキスト、`prefers-reduced-motion` の静止表示
+- Phase 5: About の sticky 写真・カラー化・流れるタグ、技術スタックの2段マーキー、お問い合わせ・Footer の演出
+- Phase 5: Web3Forms とモーダルの動作を維持し、モバイルの横スクロールと `prefers-reduced-motion` に対応

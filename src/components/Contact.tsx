@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import { Send, MapPin, X, Phone, CheckCircle } from "lucide-react";
 
 export default function Contact() {
@@ -9,12 +9,22 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState("");
+  const reducedMotion = useReducedMotion();
+  const headingSkew = useMotionValue(0);
+  const smoothSkew = useSpring(headingSkew, { stiffness: 130, damping: 20 });
 
   useEffect(() => {
     const handler = () => setIsOpen(true);
     window.addEventListener("open-contact-modal", handler);
     return () => window.removeEventListener("open-contact-modal", handler);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && handleClose();
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  });
 
   const handleClose = () => {
     setIsOpen(false);
@@ -53,9 +63,13 @@ export default function Contact() {
 
   return (
     <>
-      <section id="contact" className="bg-white py-24">
+      <section id="contact" className="overflow-x-clip bg-blueprint-paper py-24 md:py-32" onPointerMove={(event) => {
+        if (reducedMotion) return;
+        headingSkew.set(((event.clientX / window.innerWidth) * 4) - 2);
+      }} onPointerLeave={() => headingSkew.set(0)}>
         <div className="mx-auto max-w-6xl px-6">
-          <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-[#1a3a6c] to-[#2ecaa0] p-8 md:p-16">
+          <div className="relative overflow-hidden rounded-[2rem] bg-brand-navy px-6 py-16 md:px-12 md:py-24">
+            <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,.2)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.2)_1px,transparent_1px)] [background-size:32px_32px]" />
             <div className="flex flex-col items-center text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -63,11 +77,7 @@ export default function Contact() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <h2 className="text-3xl font-bold text-white md:text-4xl">
-                  まずはお気軽に
-                  <br />
-                  ご相談ください
-                </h2>
+                <motion.h2 style={{ skewX: smoothSkew }} className="relative text-[clamp(1.6rem,5.5vw,4.75rem)] md:whitespace-nowrap font-bold text-white">まずはお気軽にご相談ください</motion.h2>
                 <p className="mt-4 text-emerald-100">
                   「まず話を聞いてほしい」という段階でも大歓迎です。
                   <br className="hidden md:block" />
@@ -79,7 +89,8 @@ export default function Contact() {
                 </div>
                 <button
                   onClick={() => setIsOpen(true)}
-                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-10 py-4 text-base font-semibold text-[#1a3a6c] shadow-lg transition hover:bg-emerald-50 hover:shadow-xl"
+                  data-magnetic
+                  className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-white px-10 py-4 text-base font-semibold text-brand-navy shadow-lg transition hover:bg-emerald-50 hover:shadow-xl"
                 >
                   <Send size={18} />
                   無料相談する
@@ -100,7 +111,7 @@ export default function Contact() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+              className="fixed inset-0 z-50 bg-[#0a0f1a]/65 backdrop-blur-md"
               onClick={handleClose}
             />
 
@@ -111,9 +122,16 @@ export default function Contact() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
               className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              role="dialog"
+              aria-modal="true"
+              aria-label="お問い合わせ"
+              onClick={handleClose}
             >
-              <div
-                className="relative w-full max-w-lg rounded-2xl bg-white p-8 shadow-2xl"
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{ hidden: {}, visible: { transition: { staggerChildren: .05, delayChildren: .08 } } }}
+                className="relative max-h-[calc(100vh-2rem)] w-full max-w-lg overflow-y-auto rounded-3xl border border-white/50 bg-white p-6 shadow-2xl md:p-8"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close button */}
@@ -126,7 +144,7 @@ export default function Contact() {
 
                 {isSuccess ? (
                   /* Success message */
-                  <div className="flex flex-col items-center py-8 text-center">
+                  <motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} className="flex flex-col items-center py-8 text-center">
                     <CheckCircle size={48} className="text-[#2ecaa0]" />
                     <h3 className="mt-4 text-xl font-bold text-slate-900">
                       送信完了
@@ -142,21 +160,21 @@ export default function Contact() {
                     >
                       閉じる
                     </button>
-                  </div>
+                  </motion.div>
                 ) : (
                   <>
                     {/* Header */}
-                    <div className="mb-6">
+                    <motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} className="mb-6">
                       <h3 className="text-xl font-bold text-slate-900">
                         お問い合わせ
                       </h3>
                       <p className="mt-1 text-sm text-slate-500">
                         以下のフォームにご記入ください。担当者より折り返しご連絡いたします。
                       </p>
-                    </div>
+                    </motion.div>
 
                     {/* Form */}
-                    <form className="space-y-4" onSubmit={handleSubmit}>
+                    <motion.form variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} className="space-y-4" onSubmit={handleSubmit}>
                       {/* Web3Forms access key */}
                       <input
                         type="hidden"
@@ -257,10 +275,10 @@ export default function Contact() {
                           閉じる
                         </button>
                       </div>
-                    </form>
+                    </motion.form>
                   </>
                 )}
-              </div>
+              </motion.div>
             </motion.div>
           </>
         )}

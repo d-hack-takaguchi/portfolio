@@ -55,9 +55,11 @@ h2 { font-size: clamp(2rem, 5vw, 4rem); }
 time, [data-numeric] { font-variant-numeric: tabular-nums; }
 }
 
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-stopped { overflow: hidden; }
+@layer base {
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-stopped { overflow: hidden; }
+}
 
 ::selection { background: rgba(46, 202, 160, .3); }
 
@@ -136,10 +138,31 @@ html.lenis, html.lenis body { height: auto; }
   background-repeat: repeat-x;
 }
 
+.about-portrait { animation: portrait-float 6s ease-in-out infinite; }
+.skill-cloud { overflow-x: clip; }
+.skill-cloud-row, .tech-marquee-row { overflow: hidden; }
+.skill-cloud-row + .skill-cloud-row { margin-top: .5rem; }
+.skill-cloud-track, .tech-marquee-track { display: flex; width: max-content; animation: marquee-left 34s linear infinite; }
+.skill-cloud-track-reverse { animation-name: marquee-right; animation-duration: 40s; }
+.skill-chip { transition: transform .45s var(--ease-out), box-shadow .45s var(--ease-out); }
+.skill-chip:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(15,37,71,.12); }
+.tech-marquee-track { animation-duration: 48s; }
+.tech-marquee-reverse { animation-name: marquee-right; animation-duration: 56s; }
+.tech-marquee:hover .tech-marquee-track { animation-play-state: paused; }
+.tech-chip { box-shadow: 0 8px 24px rgba(15,37,71,.06); }
+
+@keyframes portrait-float { 0%,100% { transform: translateY(-6px); } 50% { transform: translateY(6px); } }
+@keyframes marquee-left { to { transform: translateX(-50%); } }
+@keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
 @media (prefers-reduced-motion: reduce) {
   #cases { height: auto; }
   #cases > div { position: static; height: auto; overflow: visible; }
   #cases [style*="translate"] { transform: none !important; }
   #cases .cases-track { width: auto; flex-direction: column; padding-right: 0; }
   .chart-pulse { opacity: 1; transform: none; }
+  .about-portrait, .skill-cloud-track, .tech-marquee-track { animation: none; transform: none; }
+  .skill-cloud-row, .tech-marquee-row { overflow: visible; }
+  .skill-cloud-track, .tech-marquee-track, .skill-cloud-track > div, .tech-marquee-track > div { width: auto; flex-wrap: wrap; }
+  .skill-cloud-track > div:nth-child(2), .tech-marquee-track > div:nth-child(2) { display: none; }
 }
