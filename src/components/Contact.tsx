@@ -77,7 +77,7 @@ export default function Contact() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <motion.h2 style={{ skewX: smoothSkew }} className="relative whitespace-nowrap text-[clamp(1.8rem,5.5vw,4.75rem)] font-bold text-white">まずはお気軽にご相談ください</motion.h2>
+                <motion.h2 style={{ skewX: smoothSkew }} className="relative text-[clamp(1.6rem,5.5vw,4.75rem)] md:whitespace-nowrap font-bold text-white">まずはお気軽にご相談ください</motion.h2>
                 <p className="mt-4 text-emerald-100">
                   「まず話を聞いてほしい」という段階でも大歓迎です。
                   <br className="hidden md:block" />

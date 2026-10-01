@@ -34,7 +34,8 @@ export default function About() {
             </motion.div>
           </div>
 
-          <div>
+          {/* min-w-0: グリッドの列は既定で中身の最小幅まで広がる。流れるタグ（幅 max-content）に引っぱられてページが横に 3000px 超へ広がるのを防ぐ */}
+          <div className="min-w-0">
             <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .7 }}>
               <h3 className="text-3xl font-bold text-slate-900 md:text-5xl">髙口 和弥</h3>
               <p className="mt-2 text-sm font-medium text-brand-mint">Kazuya Takaguchi</p>
@@ -54,7 +55,7 @@ export default function About() {
               {[skills.slice(0, 13), skills.slice(13)].map((row, rowIndex) => (
                 <div key={rowIndex} className="skill-cloud-row">
                   <div className={`skill-cloud-track ${rowIndex ? "skill-cloud-track-reverse" : ""}`}>
-                    {[0, 1].map((copy) => <div key={copy} aria-hidden="true" className="flex shrink-0 gap-2 pr-2">{row.map((skill) => <span key={skill} className="skill-chip rounded-full border border-brand-navy/15 bg-white px-4 py-1.5 text-xs font-medium text-brand-navy">{skill}</span>)}</div>)}
+                    {[0, 1].map((copy) => <div key={copy} aria-hidden={copy === 1} className="flex shrink-0 gap-2 pr-2">{row.map((skill) => <span key={skill} className="skill-chip rounded-full border border-brand-navy/15 bg-white px-4 py-1.5 text-xs font-medium text-brand-navy">{skill}</span>)}</div>)}
                   </div>
                 </div>
               ))}
