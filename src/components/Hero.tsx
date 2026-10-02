@@ -1,146 +1,123 @@
 "use client";
 
-import { useRef } from "react";
-import {
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { useEffect, useState, type CSSProperties } from "react";
+import { X } from "lucide-react";
 
-const firstLine = "構想から実装まで";
-const secondLineStart = "一気通貫で";
-const secondLineAccent = "DX・AX";
-const secondLineEnd = "を推進";
+// 背景と同じ写真から人物だけを切り抜いた透過 PNG。用意できたら null をパスに替える。
+// 切り抜きがあると、流れる名前が人物の「後ろ」を通る。無いあいだは名前が顔に重ならない位置に下げる
+const CUTOUT: string | null = null;
 
-function AnimatedCharacters({ text, offset = 0 }: { text: string; offset?: number }) {
-  const reducedMotion = useReducedMotion();
+const nav = [
+  { label: "Cases", href: "#cases" },
+  { label: "Creator", href: "#creator" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
+const social = [
+  { label: "Instagram", href: "https://www.instagram.com/kazuya_dhack_ai" },
+  { label: "Threads", href: "https://www.threads.com/@dhack.ai" },
+  { label: "note", href: "https://note.com/kazuya_dhack_ai" },
+];
 
-  return <>{Array.from(text).map((character, index) => (
-    <motion.span
-      aria-hidden="true"
-      className="inline-block"
-      initial={reducedMotion ? false : { opacity: 0, y: ".45em" }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: reducedMotion ? 0 : (offset + index) * .03, duration: .65, ease: [.22, 1, .36, 1] }}
-      key={`${character}-${index}`}
-    >
-      {character}
-    </motion.span>
-  ))}</>;
-}
+const ease = "cubic-bezier(0.76, 0, 0.24, 1)";
+const delay = (ms: number): CSSProperties => ({ animationDelay: `${ms}ms` });
 
-function BlueprintScene() {
-  return (
-    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" className="h-full w-full" aria-hidden="true">
-      <defs>
-        <pattern id="blueprint-small-grid" width="42" height="42" patternUnits="userSpaceOnUse">
-          <path d="M 42 0 L 0 0 0 42" fill="none" stroke="currentColor" strokeOpacity=".16" strokeWidth="1" />
-        </pattern>
-        <linearGradient id="blueprint-fade" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="white" stopOpacity="0" />
-          <stop offset=".38" stopColor="white" stopOpacity=".34" />
-          <stop offset="1" stopColor="white" />
-        </linearGradient>
-        <mask id="floor-fade"><rect width="1600" height="900" fill="url(#blueprint-fade)" /></mask>
-      </defs>
-
-      <g className="blueprint-floor" mask="url(#floor-fade)" fill="none" stroke="currentColor" strokeWidth="1.25" opacity=".55">
-        {[-800, -600, -400, -200, 0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400].map((x) =>
-          <path key={x} d={`M800 335 L${x} 900`} />)}
-        {[370, 415, 470, 540, 625, 730, 855].map((y) =>
-          <path key={y} d={`M${800 - (y - 335) * 2.85} ${y} H${800 + (y - 335) * 2.85}`} />)}
-      </g>
-
-      <g fill="none" stroke="currentColor" strokeWidth="2" opacity=".58">
-        <path d="M155 305 335 250l180 76-178 61z M155 305v183l182 82V387 M337 570l178-70V326" />
-        <path d="m155 488 180-61 180 73 M335 250v177" strokeDasharray="7 8" opacity=".55" />
-        <path d="M1275 235 1418 285v171l-143 58-142-60V285z M1133 285l142 54 143-54 M1275 339v175" />
-        <path d="M1133 454l142-62 143 64 M1275 235v157" strokeDasharray="7 8" opacity=".55" />
-      </g>
-
-      <g fill="none" stroke="currentColor" strokeWidth="2" opacity=".7">
-        <ellipse cx="1164" cy="500" rx="42" ry="50" />
-        <path d="M1122 486c8-36 22-57 43-58 22 1 37 23 41 60M1141 542v26c-41 13-66 55-70 131M1187 542v26c41 13 66 55 70 131M1103 699l18-94m104 94-18-94M1142 568l22 15 23-15v132" />
-        <path d="M1147 505h8m18 0h8m-24 20h15" strokeWidth="1.3" />
-        <path d="M1071 699h186 M1060 714h208" strokeDasharray="6 8" opacity=".45" />
-      </g>
-
-      <g fill="currentColor" opacity=".38">
-        <circle cx="155" cy="305" r="4" /><circle cx="515" cy="326" r="4" /><circle cx="337" cy="570" r="4" />
-        <circle cx="1133" cy="285" r="4" /><circle cx="1418" cy="285" r="4" /><circle cx="1275" cy="514" r="4" />
-      </g>
-    </svg>
-  );
+function ExternalOrAnchor({ href, children, className, style, onClick }: { href: string; children: React.ReactNode; className?: string; style?: CSSProperties; onClick?: () => void }) {
+  const external = href.startsWith("http");
+  return <a href={href} className={className} style={style} onClick={onClick} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{children}</a>;
 }
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const reducedMotion = useReducedMotion();
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-  const sceneX = useSpring(pointerX, { stiffness: 90, damping: 24 });
-  const sceneY = useSpring(pointerY, { stiffness: 90, damping: 24 });
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
-  const gridY = useTransform(scrollYProgress, [0, 1], [0, reducedMotion ? 0 : 150]);
-  const accentReveal = useTransform(scrollYProgress, [0, .32], [reducedMotion ? "100%" : "0%", "100%"]);
+  const [open, setOpen] = useState(false);
 
-  const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
-    if (reducedMotion || window.innerWidth < 768) return;
-    const x = event.clientX / window.innerWidth - .5;
-    const y = event.clientY / window.innerHeight - .5;
-    pointerX.set(x * 5);
-    pointerY.set(y * -4);
-  };
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
 
-  const characterOffset = firstLine.length + secondLineStart.length;
+  const marqueeTop = CUTOUT ? "top-[16vh] sm:top-[14vh]" : "top-[52vh] sm:top-[50vh]";
+  const marqueeSize = CUTOUT ? "text-[16vh] sm:text-[26vh]" : "text-[12vh] sm:text-[18vh]";
 
   return (
-    <section ref={sectionRef} onPointerMove={handlePointerMove} onPointerLeave={() => { pointerX.set(0); pointerY.set(0); }} className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#f4f6f9] pt-20 text-[#0f172a]">
-      <motion.div className="pointer-events-none absolute -inset-8 text-[#1a3a6c] [transform-style:preserve-3d]" style={{ y: gridY, rotateY: sceneX, rotateX: sceneY }}>
-        <BlueprintScene />
-      </motion.div>
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(244,246,249,.96),rgba(244,246,249,.62)_48%,rgba(244,246,249,.2)),radial-gradient(circle_at_50%_42%,transparent_0%,rgba(244,246,249,.38)_70%)]" />
+    <section className="relative h-[100dvh] w-full overflow-hidden bg-ink">
+      {/* 背景の写真。灰色の背景のままだとクリームの文字が読めないので、写真ごと少し暗くする */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/profile.png" alt="" className="anim-fade-in absolute inset-0 h-full w-full object-cover object-[50%_20%] brightness-[.58] contrast-[1.05]" />
 
-      <div className="relative mx-auto w-full max-w-7xl px-6 py-28 md:px-10">
-        <div className="max-w-6xl">
-          <h1 aria-label={`${firstLine} ${secondLineStart}${secondLineAccent}${secondLineEnd}`} className="font-display text-[clamp(2rem,8vw,6.25rem)] font-bold tracking-[-.055em] text-[#0f172a]">
-            {/* 2行目（約10.4文字分）が 390px 幅の余白内にも収まる大きさ。nowrap なので、はみ出すと画面の外で切れる */}
-            <span className="block whitespace-nowrap"><AnimatedCharacters text={firstLine} /></span>
-            <span className="block whitespace-nowrap">
-              <AnimatedCharacters text={secondLineStart} offset={firstLine.length} />
-              <span className="relative inline-block">
-                <span className="text-[#1a3a6c]"><AnimatedCharacters text={secondLineAccent} offset={characterOffset} /></span>
-                <motion.span aria-hidden className="absolute inset-0 overflow-hidden whitespace-nowrap bg-gradient-to-r from-[#1a3a6c] to-[#2ecaa0] bg-clip-text text-transparent" style={{ width: accentReveal }}>
-                  {secondLineAccent}
-                </motion.span>
-              </span>
-              <AnimatedCharacters text={secondLineEnd} offset={characterOffset + secondLineAccent.length} />
-            </span>
-          </h1>
-
-          <motion.p initial={reducedMotion ? false : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reducedMotion ? 0 : 1.05, duration: .8, ease: [.22, 1, .36, 1] }} className="mt-7 max-w-2xl text-base leading-[1.9] text-slate-600 md:text-lg">
-            業務分析・要件定義からローコード開発・生成AI導入まで。
-            現場を知るコンサルタントが、貴社の課題に最適なソリューションをご提供します。
-            いまはAIキャラクターとAIショートドラマの制作にも取り組み、作る仕組みごと形にしています。
-          </motion.p>
-
-          <motion.div initial={reducedMotion ? false : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reducedMotion ? 0 : 1.15, duration: .8, ease: [.22, 1, .36, 1] }} className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
-            <a href="#contact" className="group inline-flex items-center gap-2 rounded-full bg-[#1a3a6c] px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#0f2547]">
-              無料相談する <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </a>
-            <a href="#cases" className="inline-flex items-center gap-2 rounded-full border border-[#1a3a6c]/25 bg-[#f4f6f9]/80 px-8 py-3.5 text-sm font-semibold text-[#0f2547] transition-colors hover:border-[#1a3a6c]">実績・事例を見る</a>
-            <a href="#creator" className="inline-flex items-center gap-2 rounded-full border border-[#1a3a6c]/25 bg-[#f4f6f9]/80 px-8 py-3.5 text-sm font-semibold text-[#0f2547] transition-colors hover:border-[#1a3a6c]">AIクリエイター活動</a>
-          </motion.div>
+      <div className={`anim-fade-up absolute inset-x-0 z-10 overflow-hidden ${marqueeTop}`} style={delay(500)}>
+        <div className={`marquee flex w-max whitespace-nowrap font-hn leading-none text-cream ${marqueeSize}`}>
+          <span className="pr-[6vw]">Kazuya &mdash; Takaguchi&nbsp;</span>
+          <span className="pr-[6vw]" aria-hidden="true">Kazuya &mdash; Takaguchi&nbsp;</span>
         </div>
       </div>
 
-      <motion.div aria-hidden initial={reducedMotion ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.35 }} className="absolute bottom-0 left-1/2 h-16 w-px -translate-x-1/2 overflow-hidden bg-[#1a3a6c]/20">
-        <motion.span className="block h-1/2 w-full bg-[#1a3a6c]" animate={reducedMotion ? undefined : { y: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }} />
-      </motion.div>
+      {CUTOUT && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={CUTOUT} alt="Portrait" className="anim-rise-in pointer-events-none absolute inset-0 z-20 h-full w-full object-cover object-[50%_20%] brightness-[.58] contrast-[1.05]" />
+      )}
+
+      <header className="absolute inset-x-0 top-0 z-30 flex items-start justify-between px-6 pt-6 text-cream sm:px-10 sm:pt-8">
+        <a href="#" className="anim-fade-up font-hn text-lg tracking-wide" style={delay(800)}>Kazuya</a>
+        <div className="hidden items-start gap-16 sm:flex lg:gap-24">
+          <span className="anim-fade-up text-sm" style={delay(900)}>2026</span>
+          <nav className="flex flex-col gap-0.5 text-sm" aria-label="サイト内">
+            {nav.map((l, i) => <a key={l.label} href={l.href} className="anim-fade-up transition-opacity duration-300 hover:opacity-60" style={delay(1000 + i * 80)}>{l.label}</a>)}
+          </nav>
+          <nav className="flex flex-col gap-0.5 text-sm" aria-label="SNS">
+            {social.map((l, i) => <ExternalOrAnchor key={l.label} href={l.href} className="anim-fade-up transition-opacity duration-300 hover:opacity-60" style={delay(1150 + i * 80)}>{l.label}</ExternalOrAnchor>)}
+          </nav>
+        </div>
+      </header>
+
+      {/* ハンバーガー（スマホ）。開くと X に変わる */}
+      <button
+        type="button"
+        aria-label={open ? "メニューを閉じる" : "メニューを開く"}
+        aria-expanded={open}
+        onClick={() => setOpen(!open)}
+        className="anim-fade-up absolute right-4 top-4 z-50 flex h-10 w-10 items-center justify-center sm:hidden"
+        style={delay(900)}
+      >
+        <span className="relative block h-4 w-6">
+          <span className="absolute left-0 top-0 block h-px w-6 bg-cream" style={{ transition: `transform 500ms ${ease}, top 500ms ${ease}`, top: open ? "50%" : "0", transform: open ? "rotate(45deg)" : "none" }} />
+          <span className="absolute left-0 top-1/2 block h-px w-6 bg-cream" style={{ transition: "opacity 300ms", opacity: open ? 0 : 1 }} />
+          <span className="absolute left-0 block h-px w-6 bg-cream" style={{ transition: `transform 500ms ${ease}, top 500ms ${ease}`, top: open ? "50%" : "100%", transform: open ? "rotate(-45deg)" : "none" }} />
+        </span>
+      </button>
+
+      {/* スマホのメニュー */}
+      <div className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-500 sm:hidden ${open ? "opacity-100" : "pointer-events-none opacity-0"}`} onClick={() => setOpen(false)} />
+      <aside
+        className="fixed right-0 top-0 z-40 h-full w-[80%] max-w-sm bg-[#141414] px-8 py-10 text-cream sm:hidden"
+        style={{ transform: open ? "translateX(0)" : "translateX(100%)", transition: `transform 600ms ${ease}` }}
+        aria-hidden={!open}
+      >
+        <button type="button" aria-label="メニューを閉じる" onClick={() => setOpen(false)} className="absolute right-6 top-6" style={{ transition: "transform 500ms, opacity 500ms", transitionDelay: open ? "300ms" : "0ms", transform: open ? "rotate(0deg)" : "rotate(90deg)", opacity: open ? 1 : 0 }}>
+          <X size={26} strokeWidth={1.5} />
+        </button>
+        <p className="mt-14 text-xs uppercase tracking-[0.2em] text-cream/50" style={{ transition: "all 600ms", transitionDelay: open ? "250ms" : "0ms", transform: open ? "none" : "translateY(16px)", opacity: open ? 1 : 0 }}>Site Index</p>
+        <nav className="mt-4 flex flex-col gap-2">
+          {nav.map((l, i) => <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="text-4xl" style={{ transition: `all 600ms ${ease}`, transitionDelay: open ? `${300 + i * 80}ms` : "0ms", transform: open ? "none" : "translateY(24px)", opacity: open ? 1 : 0 }}>{l.label}</a>)}
+        </nav>
+        <p className="mt-12 text-xs uppercase tracking-[0.2em] text-cream/50" style={{ transition: "all 600ms", transitionDelay: open ? "500ms" : "0ms", transform: open ? "none" : "translateY(16px)", opacity: open ? 1 : 0 }}>Find Me</p>
+        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+          {social.map((l, i) => <ExternalOrAnchor key={l.label} href={l.href} style={{ transition: `all 600ms ${ease}`, transitionDelay: open ? `${550 + i * 60}ms` : "0ms", transform: open ? "none" : "translateY(16px)", opacity: open ? 1 : 0 }}>{l.label}</ExternalOrAnchor>)}
+        </div>
+      </aside>
+
+      <div className="anim-line absolute inset-x-6 bottom-[5.5rem] z-10 h-0.5 bg-cream sm:inset-x-10 sm:bottom-28" />
+
+      <div className="absolute inset-x-0 bottom-0 z-30 flex items-end justify-between px-6 pb-5 font-hn text-xs leading-relaxed text-cream sm:z-10 sm:px-10 sm:pb-8 sm:text-sm">
+        <div className="anim-fade-up" style={delay(1400)}>
+          <p>DX・AX推進コンサルタント</p>
+          <p>AIクリエイター</p>
+          <p>構想から実装まで、一気通貫で。</p>
+        </div>
+        <div className="anim-fade-up text-right" style={delay(1550)}>
+          <p>Freelance since 2024</p>
+          <p>DxHack</p>
+        </div>
+      </div>
     </section>
   );
 }

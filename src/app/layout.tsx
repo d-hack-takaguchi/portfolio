@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Space_Grotesk } from "next/font/google";
+import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
-import MotionProvider from "@/components/MotionProvider";
 
-const notoSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: ["400", "500", "700", "900"], variable: "--font-noto-sans-jp", display: "swap" });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["700"], variable: "--font-space-grotesk", display: "swap" });
+// 欧文は Helvetica 系、和文はこの Noto Sans JP に落ちる（Helvetica に日本語の字形が無いため）
+const notoSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--font-noto-sans-jp", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "DxHack | 髙口 和弥 - DX・AX推進コンサルタント / AIクリエイター",
+  title: "Kazuya — Takaguchi | DX・AX推進コンサルタント / AIクリエイター",
   description:
     "業務分析・要件定義からローコード開発・生成AI導入まで、構想から実装まで一気通貫でDXを推進。AIキャラクター・AIショートドラマの制作と、制作ラインの構築にも取り組むフリーランスコンサルタント。",
   icons: {
@@ -23,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${notoSansJP.variable} ${spaceGrotesk.variable} antialiased`}><MotionProvider>{children}</MotionProvider></body>
+      <body className={notoSansJP.variable}>{children}</body>
     </html>
   );
 }
