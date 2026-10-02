@@ -1,26 +1,22 @@
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
-import AICreator from "@/components/AICreator";
+import Services from "@/components/Services";
+import Cases from "@/components/Cases";
+import Creator from "@/components/Creator";
 import About from "@/components/About";
-import CaseStudies from "@/components/CaseStudies";
-import TechStack from "@/components/TechStack";
+import Stack from "@/components/Stack";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import SiteExperience from "@/components/SiteExperience";
 
 export default function Home() {
   return (
     <>
-      <SiteExperience />
-      <Header />
       <main>
         <Hero />
-        <Features />
-        <CaseStudies />
-        <AICreator />
+        <Services />
+        <Cases />
+        <Creator />
         <About />
-        <TechStack />
+        <Stack />
         <Contact />
       </main>
       <Footer />
