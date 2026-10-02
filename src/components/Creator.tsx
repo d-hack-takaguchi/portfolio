@@ -13,12 +13,12 @@ const stats = [
   { prefix: "約", target: 3200, suffix: "", label: "最も伸びた1本（AIショートドラマ「お会計」）の再生回数" },
 ];
 
-type Work = { label: string; title: string; description: string; href: string; cta: string; image?: string };
-// image は素材がそろったら縦長の画像のパスを入れる。無いあいだは線画を出す
+// 画像の比率がばらばら（解体新書は4:5の設計図、お会計は9:16、EMBLAZE は横長の画面）なので、枠は 4:5 にそろえて見せる位置だけ変える
+type Work = { label: string; title: string; description: string; href: string; cta: string; image: string; alt: string; position: string };
 const works: Work[] = [
-  { label: "AIキャラクター", title: "AI解体新書", description: "生成AIでキャラクターを設計し、顔・体格・髪・職業までを1体ずつ「プロファイル」として定義。40体以上のAIタレント候補を、Instagramのリールで連載形式で公開しています。", href: "https://www.instagram.com/kazuya_dhack_ai", cta: "Instagramで見る" },
-  { label: "AIショートドラマ", title: "お会計 / 退職代行", description: "AIタレントが出演するショートドラマ。企画・脚本・絵コンテ・生成・編集までを一本のラインで制作。第1作「お会計」は公開から約3日で約3,200回再生されました。", href: "https://www.instagram.com/reel/DdvqzMDJ6GC/", cta: "「お会計」を見る" },
-  { label: "制作アプリ", title: "EMBLAZE", description: "ネタを送って承認するだけでAIショートドラマができる、1人用の動画制作アプリ。人は判断だけ、手を動かすのはAI。直近の4カット・42秒の作品は、自分の作業約10分・生成費用720円でした。", href: "https://note.com/kazuya_dhack_ai/n/na5b54681d0d0", cta: "仕組みを読む（note）" },
+  { label: "AIキャラクター", title: "AI解体新書", description: "生成AIでキャラクターを設計し、顔・体格・髪・職業までを1体ずつ「プロファイル」として定義。40体以上のAIタレント候補を、Instagramのリールで連載形式で公開しています。", href: "https://www.instagram.com/kazuya_dhack_ai", cta: "Instagramで見る", image: "/creator/work-kaitai.webp", alt: "AI解体新書のキャラクターの設計図。正面の顔と、目・鼻・耳・口・歯の部位", position: "object-center" },
+  { label: "AIショートドラマ", title: "お会計 / 退職代行", description: "AIタレントが出演するショートドラマ。企画・脚本・絵コンテ・生成・編集までを一本のラインで制作。第1作「お会計」は公開から約3日で約3,200回再生されました。", href: "https://www.instagram.com/reel/DdvqzMDJ6GC/", cta: "「お会計」を見る", image: "/creator/work-okaikei.webp", alt: "AIショートドラマ「お会計」の1コマ。コンビニのレジでバーコードを読み取る店員", position: "object-[50%_30%]" },
+  { label: "制作アプリ", title: "EMBLAZE", description: "ネタを送って承認するだけでAIショートドラマができる、1人用の動画制作アプリ。人は判断だけ、手を動かすのはAI。直近の4カット・42秒の作品は、自分の作業約10分・生成費用720円でした。", href: "https://note.com/kazuya_dhack_ai/n/na5b54681d0d0", cta: "仕組みを読む（note）", image: "/creator/work-emblaze.png", alt: "EMBLAZE の制作画面。カットごとの場面画像・台本・設計図を編集する", position: "object-left-top" },
 ];
 
 const steps = ["ネタを1行送る", "企画・脚本・絵コンテを生成", "配役・衣装・場面画像を決める", "全カットの動画を生成", "組み立てて完パケ", "承認して公開", "SNSにメイキングを自動投稿", "実績を回収して次の企画へ"];
@@ -82,14 +82,6 @@ function Chart() {
   );
 }
 
-// 作品の画像が届くまでの線画（動画・写真は使わない）
-function Artwork({ index }: { index: number }) {
-  const stroke = { fill: "none", stroke: "#efeee9", strokeOpacity: 0.55, strokeWidth: 1.2 };
-  if (index === 0) return <svg viewBox="0 0 240 420" className="h-full w-full"><g {...stroke}><path d="M74 151C71 92 88 54 120 54s49 38 46 97c-3 61-24 91-46 91s-43-30-46-91Z" /><path d="M86 115q34-28 68 0M102 146h5m26 0h5M108 177q12 8 24 0M120 242v78M74 290q46-31 92 0M55 390q8-83 65-83t65 83" /><path d="M72 140H28m140 0h44M93 174H35m112 0h55M120 244H36M73 309H25m142 0h48" /></g></svg>;
-  if (index === 1) return <svg viewBox="0 0 240 420" className="h-full w-full"><g {...stroke}>{[20, 117, 214, 311].map((y) => <g key={y}><rect x="18" y={y} width="204" height="89" /><circle cx="145" cy={y + 31} r="13" /><path d={`M145 ${y + 44}v28m-17 5q17-20 34 0M70 ${y + 26}q18-15 36 0v48H70Z`} /></g>)}</g></svg>;
-  return <svg viewBox="0 0 240 420" className="h-full w-full"><g {...stroke}><rect x="15" y="20" width="210" height="380" /><path d="M70 20v380M28 57h29M28 82h22M28 107h30" />{Array.from({ length: 8 }, (_, i) => <rect key={i} x="88" y={48 + i * 38} width="110" height="12" />)}<circle cx="172" cy="356" r="24" /><path d="m157 356 10 10 20-23" /></g></svg>;
-}
-
 export default function Creator() {
   return (
     <section id="creator" className="bg-ink px-6 py-28 text-cream sm:px-10 md:py-36">
@@ -114,13 +106,11 @@ export default function Creator() {
       <Chart />
 
       <div className="mt-28 grid gap-16 md:grid-cols-3 md:gap-8">
-        {works.map((w, i) => (
+        {works.map((w) => (
           <Reveal as="article" key={w.title}>
             <a href={w.href} target="_blank" rel="noopener noreferrer" className="group block">
-              <div className="relative aspect-[9/16] overflow-hidden bg-[#161616]">
-                {w.image
-                  ? <Image src={w.image} alt={w.title} fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover transition duration-700 group-hover:scale-[1.03]" />
-                  : <div className="absolute inset-0 p-10 transition duration-700 group-hover:scale-[1.03]"><Artwork index={i} /></div>}
+              <div className="relative aspect-[4/5] overflow-hidden bg-[#161616]">
+                <Image src={w.image} alt={w.alt} fill sizes="(max-width: 767px) 100vw, 33vw" className={`object-cover ${w.position} transition duration-700 group-hover:scale-[1.03]`} />
               </div>
               <p className="mt-6 text-xs uppercase tracking-[0.2em] text-cream/50">{w.label}</p>
               <h3 className="mt-2 text-2xl font-medium">{w.title}</h3>
