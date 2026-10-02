@@ -23,6 +23,14 @@ const works: Work[] = [
 
 const steps = ["ネタを1行送る", "企画・脚本・絵コンテを生成", "配役・衣装・場面画像を決める", "全カットの動画を生成", "組み立てて完パケ", "承認して公開", "SNSにメイキングを自動投稿", "実績を回収して次の企画へ"];
 
+// 1本ができるまでの実際の画面（EMBLAZE）。オーナー支給のスクショから、公開前の広告の商品名や古い実績の数字が写らない範囲を切り出した
+const screens = [
+  { src: "/creator/flow-idea.webp", w: 642, h: 500, steps: "1", caption: "企画：ネタを1行送る", alt: "EMBLAZE の企画画面。ネタを1〜数文で送る欄" },
+  { src: "/creator/flow-script.webp", w: 1200, h: 362, steps: "2–3", caption: "台本と設計図：秒ごとの動き・セリフとカメラ割り", alt: "EMBLAZE の台本と設計図の画面。秒ごとの情景・動き・セリフと、カメラの動き" },
+  { src: "/creator/flow-produce.webp", w: 1228, h: 682, steps: "4–5", caption: "制作：全カットを自動で撮って完パケ", alt: "EMBLAZE の制作画面。全カットを自動で撮って完パケにするボタンと、手で回した動画を上げる欄" },
+  { src: "/creator/flow-works.webp", w: 830, h: 810, steps: "6–8", caption: "作品：公開と実績の回収", alt: "EMBLAZE の作品画面。公開済みの「お会計」と「退職代行」" },
+];
+
 const principles = [
   { title: "AIっぽさは「シチュエーションの再現性」で消す", description: "AI動画が不自然に見えるのは、場面ごとに人物・場所・画角が毎回ばらつくから。同じ人物が、同じ質感の場所で、狙った画角で動く。この再現性を先に設計することを一番大事にしています。" },
   { title: "AI解体新書：人物を「設計図」にして固定する", description: "顔・体格・肌・髪・職業を1体ずつプロファイルとして定義し、同じ顔で出演させ続けます。ファンがつくのは作品ではなく人物なので、ここが崩れない仕組みを最初に作りました。" },
@@ -131,6 +139,18 @@ export default function Creator() {
             </Reveal>
           ))}
         </ol>
+      </div>
+      <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 md:ml-[25%]">
+        {screens.map((sc) => (
+          <Reveal as="article" key={sc.src}>
+            <figure>
+              <div className="overflow-hidden border border-cream/15">
+                <Image src={sc.src} alt={sc.alt} width={sc.w} height={sc.h} sizes="(max-width: 639px) 100vw, 40vw" className="h-auto w-full" />
+              </div>
+              <figcaption className="mt-3 flex gap-4 text-sm"><span className="w-8 shrink-0 tabular-nums text-cream/45">{sc.steps}</span><span>{sc.caption}</span></figcaption>
+            </figure>
+          </Reveal>
+        ))}
       </div>
       <p className="mt-6 text-xs text-cream/45 md:ml-[25%]">掲載している人物・映像・音声はすべてAIで生成したフィクションです。</p>
 
