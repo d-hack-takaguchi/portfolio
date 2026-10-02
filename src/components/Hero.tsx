@@ -5,7 +5,7 @@ import { X } from "lucide-react";
 
 // 背景と同じ写真から人物だけを切り抜いた透過 PNG。用意できたら null をパスに替える。
 // 切り抜きがあると、流れる名前が人物の「後ろ」を通る。無いあいだは名前が顔に重ならない位置に下げる
-const CUTOUT: string | null = null;
+const CUTOUT: string | null = "/profile-cutout.webp";
 
 const nav = [
   { label: "Cases", href: "#cases" },
