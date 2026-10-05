@@ -8,7 +8,7 @@ const notoSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: ["400", "500", "70
 export const metadata: Metadata = {
   title: "Kazuya — Takaguchi | DX・AX推進コンサルタント / AIクリエイター",
   description:
-    "業務分析・要件定義からローコード開発・生成AI導入まで、構想から実装まで一気通貫でDXを推進。AIキャラクター・AIショートドラマの制作と、制作ラインの構築にも取り組むフリーランスコンサルタント。",
+    "業務分析・要件定義からローコード開発・生成AI導入まで、構想から実装まで一気通貫でDXを推進。AIキャラクター・AIショートドラマ・AI広告の制作と、制作ラインの構築にも取り組むフリーランスコンサルタント。",
   icons: {
     icon: "/icon.png",
     apple: "/apple-icon.png",

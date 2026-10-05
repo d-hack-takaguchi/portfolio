@@ -6,7 +6,7 @@ const services = [
   { title: "ローコード開発", description: "PowerApps・Power Automate・Kintone・SharePointによるアプリ・ワークフロー構築。短期間で業務に直結するシステムを実現します。" },
   { title: "生成AI導入支援", description: "Claude・ChatGPT・Gemini等の業務活用を支援。プロンプト設計から業務プロセスへの組み込みまで伴走します。" },
   { title: "RPA・OCR自動化・Web開発", description: "Power Automate Desktop・VBA・AI-OCRによる業務自動化と、React/TypeScriptによるWebアプリ開発。要件定義から画面設計まで対応します。" },
-  { title: "AIコンテンツ制作・制作ライン構築", description: "AIキャラクター・ショートドラマの制作と、企画から公開までを自動化する制作ラインの設計・構築。SNS発信の仕組みづくりまで支援します。" },
+  { title: "AIコンテンツ制作・制作ライン構築", description: "AIキャラクター・ショートドラマ・広告動画の制作と、企画から公開までを自動化する制作ラインの設計・構築。SNS発信の仕組みづくりまで支援します。" },
   { title: "内製化支援・技術移転", description: "担当者が自走できる仕組みづくり。技術ドキュメント整備・ハンズオン支援で、持続可能な運用体制を構築します。" },
 ];
 

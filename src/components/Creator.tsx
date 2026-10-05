@@ -8,8 +8,8 @@ import SectionHead from "./SectionHead";
 import { views } from "@/data/views";
 
 const stats = [
-  { prefix: "0 → 約", target: 7500, suffix: "", label: "フォロワー0・投稿開始から16日間の累計再生回数" },
-  { prefix: "", target: 23, suffix: "本", label: "同期間に公開したリール（AI解体新書・AIショートドラマ）" },
+  { prefix: "0 → 約", target: 7550, suffix: "", label: "フォロワー0・投稿開始から21日間の累計再生回数" },
+  { prefix: "", target: 25, suffix: "本", label: "同期間に公開したリール（AI解体新書・AIショートドラマ・AI広告）" },
   { prefix: "約", target: 3200, suffix: "", label: "最も伸びた1本（AIショートドラマ「お会計」）の再生回数" },
 ];
 
@@ -18,10 +18,10 @@ type Work = { label: string; title: string; description: string; href: string; c
 const works: Work[] = [
   { label: "AIキャラクター", title: "AI解体新書", description: "生成AIでキャラクターを設計し、顔・体格・髪・職業までを1体ずつ「プロファイル」として定義。40体以上のAIタレント候補を、Instagramのリールで連載形式で公開しています。", href: "https://www.instagram.com/kazuya_dhack_ai", cta: "Instagramで見る", image: "/creator/work-kaitai.webp", alt: "AI解体新書のキャラクターの設計図。正面の顔と、目・鼻・耳・口・歯の部位", position: "object-center" },
   { label: "AIショートドラマ", title: "お会計 / 退職代行", description: "AIタレントが出演するショートドラマ。企画・脚本・絵コンテ・生成・編集までを一本のラインで制作。第1作「お会計」は公開から約3日で約3,200回再生されました。", href: "https://www.instagram.com/reel/DdvqzMDJ6GC/", cta: "「お会計」を見る", image: "/creator/work-okaikei.webp", alt: "AIショートドラマ「お会計」の1コマ。コンビニのレジでバーコードを読み取る店員", position: "object-[50%_30%]" },
-  { label: "制作アプリ", title: "EMBLAZE", description: "ネタを送って承認するだけでAIショートドラマができる、1人用の動画制作アプリ。人は判断だけ、手を動かすのはAI。直近の4カット・42秒の作品は、自分の作業約10分・生成費用720円でした。", href: "https://note.com/kazuya_dhack_ai/n/na5b54681d0d0", cta: "仕組みを読む（note）", image: "/creator/work-emblaze.png", alt: "EMBLAZE の制作画面。カットごとの場面画像・台本・設計図を編集する", position: "object-left-top" },
+  { label: "制作アプリ", title: "EMBLAZE", description: "ネタを送って承認するだけで、AIショートドラマとAI広告ができる1人用の動画制作アプリ。企画・脚本・絵コンテ・Blenderの設計図・動画生成・組み立て・公開・実績の回収までが一本につながり、人は判断だけ。直近の3カット30秒の作品は、自分の作業約15分・生成費用360円でした。", href: "https://note.com/kazuya_dhack_ai/n/na5b54681d0d0", cta: "仕組みを読む（note）", image: "/creator/work-emblaze.png", alt: "EMBLAZE の制作画面。カットごとの場面画像・台本・設計図を編集する", position: "object-left-top" },
 ];
 
-const steps = ["ネタを1行送る", "企画・脚本・絵コンテを生成", "配役・衣装・場面画像を決める", "全カットの動画を生成", "組み立てて完パケ", "承認して公開", "SNSにメイキングを自動投稿", "実績を回収して次の企画へ"];
+const steps = ["ネタを1行送る", "企画・脚本・絵コンテ・設計図を生成", "配役・衣装・場面画像を決める", "全カットの動画を生成", "組み立てて投稿用動画にする", "承認して公開", "SNSにメイキングを自動投稿", "実績を回収して次の企画へ"];
 
 // 1本ができるまでの実際の画面（EMBLAZE）。オーナー支給のスクショから、公開前の広告の商品名や古い実績の数字が写らない範囲を切り出した
 const screens = [
@@ -31,10 +31,19 @@ const screens = [
   { src: "/creator/flow-works.webp", w: 830, h: 810, steps: "6–8", caption: "作品：公開と実績の回収", alt: "EMBLAZE の作品画面。公開済みの「お会計」と「退職代行」" },
 ];
 
+const updates = [
+  { date: "10/05", title: "作業の途中で見る画面を別タブに", description: "台本・プロンプト・メイキングなど、作業の途中で見に行く画面を別タブで開くようにし、今の作業画面から離れずに確認できるようにしました。" },
+  { date: "10/04", title: "自由記述の設計図からBlenderの下書きを自動で", description: "カメラ割りを文章で書くと、AIがショット表に直し、灰色の3D下書きを自動で書き出します。直しを安い段で済ませてから本番の生成へ進めます。" },
+  { date: "10/04", title: "投稿用動画の仕上げを自動化", description: "最後のセリフのあとに題名を縦書きでパッと出し、和太鼓の「ドン」を重ねる演出と、声に合わせたセリフのテロップを組み立てに入れました。" },
+  { date: "10/04", title: "実績を毎朝ダッシュボードへ", description: "Instagramの再生・リーチ・保存・シェアを毎朝自動で作品ごとに写し、次の企画を数字から決められるようにしました。" },
+  { date: "10/04", title: "画面の取り違えとお金の重さを減らす", description: "制作の画面の表示を4.4秒から2.1秒に短縮。次にやることを1つだけ見せ、課金の前に金額と今月の残りを確認できる画面に直しました。" },
+  { date: "10/01〜", title: "AI広告に広げる", description: "商品の写真とAIタレントを掛け合わせ、同じ仕組みで広告動画を作れるようにしました。最後の商品カードの画像も画面から上げて、動画に組み込めます。" },
+];
+
 const principles = [
   { title: "AIっぽさは「シチュエーションの再現性」で消す", description: "AI動画が不自然に見えるのは、場面ごとに人物・場所・画角が毎回ばらつくから。同じ人物が、同じ質感の場所で、狙った画角で動く。この再現性を先に設計することを一番大事にしています。" },
   { title: "AI解体新書：人物を「設計図」にして固定する", description: "顔・体格・肌・髪・職業を1体ずつプロファイルとして定義し、同じ顔で出演させ続けます。ファンがつくのは作品ではなく人物なので、ここが崩れない仕組みを最初に作りました。" },
-  { title: "カット割りを、撮る前に決める", description: "1本を最大4カット・起承転結に分け、カットごとに秒数・動き・セリフ・言い方まで絵コンテで決めてから生成します。生成してから考えると、やり直しがそのままコストになります。" },
+  { title: "カット割りを、撮る前に決める", description: "1本を最大4カット・1カット最大15秒の起承転結に分け、カットごとに秒数・動き・セリフ・言い方まで絵コンテで決めてから生成します。生成してから考えると、やり直しがそのままコストになります。" },
   { title: "Blenderの3D絵コンテで、やり直しの費用を先に消す", description: "灰色の3Dで画角・カメラの動き・人物の位置を先に動画で確認し、直しは安い段で済ませてから本番の生成に進みます。AI動画生成の「回して、外して、また回す」という無駄なコストを抑えます。" },
   { title: "仕組みにして、属人化とスキル格差をなくす", description: "監督の観点表・撮影ルール・プロンプトの型・承認の手順を文書とアプリに落とし込み、勘に頼らず誰がやっても同じ品質になる形にしています。制作ラインとして人に渡せることが、支援の価値になると考えています。" },
 ];
@@ -80,11 +89,11 @@ function Chart() {
   const okaikei = pts[6];
   return (
     <Reveal className="mt-16 border-t border-cream/20 pt-8">
-      <svg viewBox={`0 0 ${w} ${h}`} role="img" aria-label="2026年9月14日から9月28日までの累計再生回数の推移" className="w-full overflow-visible">
+      <svg viewBox={`0 0 ${w} ${h}`} role="img" aria-label="2026年9月14日から10月4日までの累計再生回数の推移" className="w-full overflow-visible">
         <path d={d} pathLength={1} fill="none" stroke="#efeee9" strokeWidth="1.5" className="chart-line" />
         {pts.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="3" fill="#0e0e0e" stroke="#efeee9" strokeWidth="1.5" />)}
         <text x={okaikei[0]} y={okaikei[1] - 14} textAnchor="middle" fill="#efeee9" fillOpacity=".6" fontSize="13">お会計</text>
-        <text x={last[0]} y={last[1] - 14} textAnchor="end" fill="#efeee9" fontSize="13">9/28・7,512</text>
+        <text x={last[0]} y={last[1] - 14} textAnchor="end" fill="#efeee9" fontSize="13">10/4・7,551</text>
       </svg>
     </Reveal>
   );
@@ -110,7 +119,7 @@ export default function Creator() {
           </Reveal>
         ))}
       </div>
-      <p className="mt-2 text-xs text-cream/40">2026年9月14日に投稿を開始（Instagram、時点：9月29日）</p>
+      <p className="mt-2 text-xs text-cream/40">2026年9月14日に投稿を開始（Instagram、時点：10月4日）</p>
       <Chart />
 
       <div className="mt-28 grid gap-16 md:grid-cols-3 md:gap-8">
@@ -153,6 +162,21 @@ export default function Creator() {
         ))}
       </div>
       <p className="mt-6 text-xs text-cream/45 md:ml-[25%]">掲載している人物・映像・音声はすべてAIで生成したフィクションです。</p>
+
+      <div className="mt-32 grid gap-10 md:grid-cols-12">
+        <h3 className="text-xs uppercase tracking-[0.2em] text-cream/55 md:col-span-3">最近のアップデート</h3>
+        <ol className="border-t border-cream/20 md:col-span-9">
+          {updates.map((u) => (
+            <Reveal as="li" key={u.title} className="grid gap-2 border-b border-cream/20 py-6 sm:grid-cols-[5.5rem_1fr] sm:gap-6">
+              <span className="text-sm tabular-nums text-cream/45">{u.date}</span>
+              <div>
+                <h4 className="text-base font-medium">{u.title}</h4>
+                <p className="mt-2 max-w-[560px] text-sm leading-[1.9] text-cream/70">{u.description}</p>
+              </div>
+            </Reveal>
+          ))}
+        </ol>
+      </div>
 
       <div className="mt-32">
         <SectionHead index="04" label="Principles" title="SNS向けAI動画制作で大切にしていること" />
