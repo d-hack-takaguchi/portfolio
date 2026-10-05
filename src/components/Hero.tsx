@@ -3,9 +3,15 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { X } from "lucide-react";
 
-// 背景と同じ写真から人物だけを切り抜いた透過 PNG。用意できたら null をパスに替える。
-// 切り抜きがあると、流れる名前が人物の「後ろ」を通る。無いあいだは名前が顔に重ならない位置に下げる
-const CUTOUT: string | null = "/profile-cutout.webp";
+// トップは自分の顔や名前ではなく、作ったコンテンツがゆっくり流れ続ける壁にする（2026-10-05 オーナー指示:「顔と名前は主張しすぎ」）。
+// 画像は既存の作品・EMBLAZE の画面。列ごとに向きと速さを変え、同じ列を2回並べて（間隔は gap でなく各画像の下マージンにして、半分動くと元と一致するように）継ぎ目なく繰り返す
+type Tile = { src: string; ratio: string; pos?: string };
+const columns: { tiles: Tile[]; duration: number; reverse?: boolean; className?: string }[] = [
+  { duration: 70, tiles: [{ src: "/creator/work-kaitai.webp", ratio: "aspect-[4/5]" }, { src: "/creator/flow-script.webp", ratio: "aspect-[4/3]", pos: "object-left" }, { src: "/creator/work-okaikei.webp", ratio: "aspect-[4/5]", pos: "object-[50%_30%]" }] },
+  { duration: 86, reverse: true, tiles: [{ src: "/creator/flow-produce.webp", ratio: "aspect-[4/3]" }, { src: "/creator/work-emblaze.png", ratio: "aspect-[4/5]", pos: "object-left-top" }, { src: "/creator/flow-idea.webp", ratio: "aspect-[4/3]" }] },
+  { duration: 78, className: "hidden sm:flex", tiles: [{ src: "/creator/work-okaikei.webp", ratio: "aspect-[4/5]", pos: "object-[50%_30%]" }, { src: "/creator/flow-works.webp", ratio: "aspect-square" }, { src: "/creator/flow-script.webp", ratio: "aspect-[4/3]", pos: "object-left" }] },
+  { duration: 94, reverse: true, className: "hidden lg:flex", tiles: [{ src: "/creator/work-emblaze.png", ratio: "aspect-[4/5]", pos: "object-left-top" }, { src: "/creator/flow-works.webp", ratio: "aspect-square" }, { src: "/creator/flow-produce.webp", ratio: "aspect-[4/3]" }] },
+];
 
 const nav = [
   { label: "Cases", href: "#cases" },
@@ -35,26 +41,22 @@ export default function Hero() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  const marqueeTop = CUTOUT ? "top-[16vh] sm:top-[14vh]" : "top-[52vh] sm:top-[50vh]";
-  const marqueeSize = CUTOUT ? "text-[16vh] sm:text-[26vh]" : "text-[12vh] sm:text-[18vh]";
-
   return (
     <section className="relative h-[100dvh] w-full overflow-hidden bg-ink">
-      {/* 背景の写真。灰色の背景のままだとクリームの文字が読めないので、写真ごと少し暗くする */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/profile.png" alt="" className="anim-fade-in absolute inset-0 h-full w-full object-cover object-[50%_20%] brightness-[.58] contrast-[1.05]" />
-
-      <div className={`anim-fade-up absolute inset-x-0 z-10 overflow-hidden ${marqueeTop}`} style={delay(500)}>
-        <div className={`marquee flex w-max whitespace-nowrap font-hn leading-none text-cream ${marqueeSize}`}>
-          <span className="pr-[6vw]">Kazuya &mdash; Takaguchi&nbsp;</span>
-          <span className="pr-[6vw]" aria-hidden="true">Kazuya &mdash; Takaguchi&nbsp;</span>
-        </div>
+      {/* 作品の壁。読みやすさのため全体を少し暗くし、上下は黒へ溶かす */}
+      <div className="anim-fade-in absolute inset-0 flex justify-center gap-3 px-3 opacity-45 sm:gap-4 sm:px-4" aria-hidden="true">
+        {columns.map((c, i) => (
+          <div key={i} className={`drift-col relative h-full min-w-0 flex-1 overflow-hidden ${c.className ?? "flex"}`}>
+            <div className={`drift flex flex-col ${c.reverse ? "drift-reverse" : ""}`} style={{ animationDuration: `${c.duration}s` }}>
+              {[0, 1].flatMap((n) => c.tiles.map((t, j) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={`${n}-${j}`} src={t.src} alt="" loading={n === 0 ? "eager" : "lazy"} decoding="async" className={`mb-3 w-full shrink-0 object-cover sm:mb-4 ${t.ratio} ${t.pos ?? "object-center"}`} />
+              )))}
+            </div>
+          </div>
+        ))}
       </div>
-
-      {CUTOUT && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={CUTOUT} alt="Portrait" className="anim-rise-in pointer-events-none absolute inset-0 z-20 h-full w-full object-cover object-[50%_20%] brightness-[.58] contrast-[1.05]" />
-      )}
+      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-ink/85 via-transparent via-45% to-ink/95" />
 
       <header className="absolute inset-x-0 top-0 z-30 flex items-start justify-between px-6 pt-6 text-cream sm:px-10 sm:pt-8">
         <a href="#" className="anim-fade-up font-hn text-lg tracking-wide" style={delay(800)}>Kazuya</a>
@@ -104,6 +106,8 @@ export default function Hero() {
           {social.map((l, i) => <ExternalOrAnchor key={l.label} href={l.href} style={{ transition: `all 600ms ${ease}`, transitionDelay: open ? `${550 + i * 60}ms` : "0ms", transform: open ? "none" : "translateY(16px)", opacity: open ? 1 : 0 }}>{l.label}</ExternalOrAnchor>)}
         </div>
       </aside>
+
+      <p className="anim-fade-up absolute inset-x-6 bottom-[8.5rem] z-20 max-w-[18em] font-hn text-2xl leading-[1.35] text-cream sm:inset-x-10 sm:bottom-40 sm:max-w-none sm:text-4xl" style={delay(1200)}>AIで作品を作り、<br />作る仕組みまで組む。</p>
 
       <div className="anim-line absolute inset-x-6 bottom-[5.5rem] z-10 h-0.5 bg-cream sm:inset-x-10 sm:bottom-28" />
 
