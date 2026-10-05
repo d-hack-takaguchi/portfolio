@@ -14,10 +14,11 @@ const stats = [
 ];
 
 // 画像の比率がばらばら（解体新書は4:5の設計図、お会計は9:16、EMBLAZE は横長の画面）なので、枠は 4:5 にそろえて見せる位置だけ変える
-type Work = { label: string; title: string; description: string; href: string; cta: string; image: string; alt: string; position: string };
+type Work = { tile?: string; label: string; title: string; description: string; href: string; cta: string; image?: string; alt?: string; position?: string };
 const works: Work[] = [
   { label: "AIキャラクター", title: "AI解体新書", description: "生成AIでキャラクターを設計し、顔・体格・髪・職業までを1体ずつ「プロファイル」として定義。40体以上のAIタレント候補を、Instagramのリールで連載形式で公開しています。", href: "https://www.instagram.com/kazuya_dhack_ai", cta: "Instagramで見る", image: "/creator/work-kaitai.webp", alt: "AI解体新書のキャラクターの設計図。正面の顔と、目・鼻・耳・口・歯の部位", position: "object-center" },
   { label: "AIショートドラマ", title: "お会計 / 退職代行", description: "AIタレントが出演するショートドラマ。企画・脚本・絵コンテ・生成・編集までを一本のラインで制作。第1作「お会計」は公開から約3日で約3,200回再生されました。", href: "https://www.instagram.com/reel/DdvqzMDJ6GC/", cta: "「お会計」を見る", image: "/creator/work-okaikei.webp", alt: "AIショートドラマ「お会計」の1コマ。コンビニのレジでバーコードを読み取る店員", position: "object-[50%_30%]" },
+  { label: "AI広告", title: "AI広告", description: "商品の写真とAIタレントを掛け合わせて作る、縦型の広告動画。商品の形とロゴを全カットで固定し、最後に商品カードと広告表示を入れます。企画から公開までEMBLAZEの同じラインで制作しています。", href: "https://www.instagram.com/reel/DeCME3PJBfU/", cta: "AI広告を見る", tile: "AI AD" },
   { label: "制作アプリ", title: "EMBLAZE", description: "ネタを送って承認するだけで、AIショートドラマとAI広告ができる1人用の動画制作アプリ。企画・脚本・絵コンテ・Blenderの設計図・動画生成・組み立て・公開・実績の回収までが一本につながり、人は判断だけ。直近の3カット30秒の作品は、自分の作業約15分・生成費用360円でした。", href: "https://note.com/kazuya_dhack_ai/n/na5b54681d0d0", cta: "仕組みを読む（note）", image: "/creator/work-emblaze.png", alt: "EMBLAZE の制作画面。カットごとの場面画像・台本・設計図を編集する", position: "object-left-top" },
 ];
 
@@ -122,12 +123,20 @@ export default function Creator() {
       <p className="mt-2 text-xs text-cream/40">2026年9月14日に投稿を開始（Instagram、時点：10月4日）</p>
       <Chart />
 
-      <div className="mt-28 grid gap-16 md:grid-cols-3 md:gap-8">
+      <div className="mt-28 grid gap-16 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
         {works.map((w) => (
           <Reveal as="article" key={w.title}>
             <a href={w.href} target="_blank" rel="noopener noreferrer" className="group block">
               <div className="relative aspect-[4/5] overflow-hidden bg-[#161616]">
-                <Image src={w.image} alt={w.alt} fill sizes="(max-width: 767px) 100vw, 33vw" className={`object-cover ${w.position} transition duration-700 group-hover:scale-[1.03]`} />
+                {w.image ? (
+                  <Image src={w.image} alt={w.alt ?? ""} fill sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw" className={`object-cover ${w.position} transition duration-700 group-hover:scale-[1.03]`} />
+                ) : (
+                  <div className="flex h-full flex-col justify-between p-6 transition duration-700 group-hover:bg-[#1c1c1c]">
+                    <p className="text-xs uppercase tracking-[0.2em] text-cream/45">9:16 / Reels</p>
+                    <p className="text-5xl font-medium tracking-[-0.02em]">{w.tile}</p>
+                    <p className="text-xs leading-relaxed text-cream/55">商品 × AIタレント</p>
+                  </div>
+                )}
               </div>
               <p className="mt-6 text-xs uppercase tracking-[0.2em] text-cream/50">{w.label}</p>
               <h3 className="mt-2 text-2xl font-medium">{w.title}</h3>
