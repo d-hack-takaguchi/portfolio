@@ -8,9 +8,9 @@ import { X } from "lucide-react";
 type Tile = { src: string; ratio: string; pos?: string };
 const columns: { tiles: Tile[]; duration: number; reverse?: boolean; className?: string }[] = [
   { duration: 70, tiles: [{ src: "/creator/work-kaitai.webp", ratio: "aspect-[4/5]" }, { src: "/creator/flow-script.webp", ratio: "aspect-[4/3]", pos: "object-left" }, { src: "/creator/work-okaikei.webp", ratio: "aspect-[4/5]", pos: "object-[50%_30%]" }] },
-  { duration: 86, reverse: true, tiles: [{ src: "/creator/flow-produce.webp", ratio: "aspect-[4/3]" }, { src: "/creator/work-emblaze.png", ratio: "aspect-[4/5]", pos: "object-left-top" }, { src: "/creator/flow-idea.webp", ratio: "aspect-[4/3]" }] },
+  { duration: 86, reverse: true, tiles: [{ src: "/creator/flow-produce.webp", ratio: "aspect-[4/3]" }, { src: "/creator/work-emblaze.png", ratio: "aspect-[4/5]", pos: "object-left-top" }, { src: "/creator/work-ad.webp", ratio: "aspect-[4/5]", pos: "object-[50%_30%]" }, { src: "/creator/flow-idea.webp", ratio: "aspect-[4/3]" }] },
   { duration: 78, className: "hidden sm:flex", tiles: [{ src: "/creator/work-okaikei.webp", ratio: "aspect-[4/5]", pos: "object-[50%_30%]" }, { src: "/creator/flow-works.webp", ratio: "aspect-square" }, { src: "/creator/flow-script.webp", ratio: "aspect-[4/3]", pos: "object-left" }] },
-  { duration: 94, reverse: true, className: "hidden lg:flex", tiles: [{ src: "/creator/work-emblaze.png", ratio: "aspect-[4/5]", pos: "object-left-top" }, { src: "/creator/flow-works.webp", ratio: "aspect-square" }, { src: "/creator/flow-produce.webp", ratio: "aspect-[4/3]" }] },
+  { duration: 94, reverse: true, className: "hidden lg:flex", tiles: [{ src: "/creator/work-emblaze.png", ratio: "aspect-[4/5]", pos: "object-left-top" }, { src: "/creator/work-ad.webp", ratio: "aspect-[4/5]", pos: "object-[50%_30%]" }, { src: "/creator/flow-works.webp", ratio: "aspect-square" }, { src: "/creator/flow-produce.webp", ratio: "aspect-[4/3]" }] },
 ];
 
 const nav = [
