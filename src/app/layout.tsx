@@ -7,7 +7,7 @@ const notoSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: ["400", "500", "70
 export const metadata: Metadata = {
   title: "DxHack | 髙口 和弥 - DX・AX推進コンサルタント",
   description:
-    "業務分析・要件定義からローコード開発・生成AI導入まで。構想から実装まで一気通貫でDX・AXを推進するフリーランスコンサルタント。",
+    "構想から実装まで、一気通貫でDX・AXを推進。現場マネジメントと業務改革の経験、生成AI・ローコード開発の実装スキルを強みに、課題整理から定着・内製化まで支援するフリーランスコンサルタント。",
   icons: {
     icon: "/icon.png",
     apple: "/apple-icon.png",

@@ -7,8 +7,8 @@ export default function Hero() {
           構想から実装まで、<br />一気通貫でDX・AXを推進。
         </h1>
         <p className="mt-7 max-w-2xl text-base leading-[2] text-sub">
-          業務分析・要件定義からローコード開発・生成AI導入まで。
-          現場を知るコンサルタントが、貴社の課題に最適なソリューションをご提供します。
+          コンタクトセンターの現場マネジメントと業務改革の経験、生成AI・ローコード開発の実装スキルを強みに、
+          業務課題の整理から仕組みの構築、現場への定着・内製化までを支援します。
         </p>
         <div className="mt-10 flex flex-wrap gap-3">
           <a href="#cases" className="rounded-md bg-navy px-7 py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-85">実績を見る</a>

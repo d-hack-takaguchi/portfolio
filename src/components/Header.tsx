@@ -3,8 +3,9 @@ import Image from "next/image";
 const nav = [
   { href: "#services", label: "サービス" },
   { href: "#cases", label: "実績" },
+  { href: "#career", label: "経歴" },
   { href: "#about", label: "プロフィール" },
-  { href: "#techstack", label: "技術スタック" },
+  { href: "#techstack", label: "技術" },
 ];
 
 export default function Header() {
