@@ -1,13 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="bg-ink px-6 pb-8 text-cream sm:px-10">
-      <div className="h-0.5 w-full bg-cream" />
-      <div className="mt-6 flex flex-wrap items-end justify-between gap-6 text-xs leading-relaxed sm:text-sm">
-        <div>
-          <p>Kazuya Takaguchi</p>
-          <p className="text-cream/55">DX・AX推進コンサルタント / AIクリエイター</p>
-        </div>
-        <p className="text-cream/55">&copy; {new Date().getFullYear()} D-Hack. All rights reserved.</p>
+    <footer className="border-t border-line px-5 py-8 sm:px-8">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 text-xs text-sub">
+        <p>髙口 和弥 / DX・AX推進コンサルタント</p>
+        <p>&copy; {new Date().getFullYear()} D-Hack. All rights reserved.</p>
       </div>
     </footer>
   );

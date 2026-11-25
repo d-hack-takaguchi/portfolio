@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Reveal from "./Reveal";
-import SectionHead from "./SectionHead";
+import Section from "./Section";
 
 const cases = [
   { client: "大手SIer（営業部門）", title: "JIRA風タスク管理システム開発", description: "営業部門の案件管理を効率化するため、PowerApps＋SharePoint/Excel Onlineによるカンバン型タスク管理アプリを設計・開発。カンバン・タスク詳細・編集・プロジェクト管理・設定の多画面アーキテクチャを実装し、コメント機能（タスクあたり最大10件、タイムスタンプ付き）やPower Automateによる更新通知フローも構築。モバイルレスポンシブ対応、デプロイ手順書・移行パッケージの整備まで一貫して担当。", image: "/case-kanban.svg" },
@@ -10,23 +9,21 @@ const cases = [
 
 export default function Cases() {
   return (
-    <section id="cases" className="bg-cream px-6 pb-28 text-ink sm:px-10 md:pb-36">
-      <SectionHead tone="light" index="02" label="Cases" title={<>DX・AX推進支援の具体的な実績</>} />
-      <div className="space-y-20 md:space-y-28">
-        {cases.map((c, i) => (
-          <Reveal as="article" key={c.title} className="group grid gap-8 md:grid-cols-12 md:gap-6">
-            <div className="relative aspect-[16/10] overflow-hidden md:col-span-5">
-              {/* 今の画像は色の強いイラストなので、黒とクリームの中では白黒で見せ、乗せたときだけ色を戻す */}
-              <Image src={c.image} alt={c.title} fill sizes="(max-width: 767px) 100vw, 40vw" className="object-cover grayscale transition duration-700 group-hover:scale-[1.03] group-hover:grayscale-0" />
+    <Section id="cases" label="Cases" title="実績・事例">
+      <div className="space-y-12 md:space-y-16">
+        {cases.map((c) => (
+          <article key={c.title} className="grid gap-6 md:grid-cols-5 md:gap-10">
+            <div className="relative aspect-[2/1] overflow-hidden rounded-lg border border-line md:col-span-2">
+              <Image src={c.image} alt="" fill sizes="(max-width: 767px) 100vw, 40vw" className="object-cover" />
             </div>
-            <div className="md:col-span-6 md:col-start-7">
-              <p className="text-xs tracking-[0.15em] text-ink/50">{String(i + 1).padStart(2, "0")} / {c.client}</p>
-              <h3 className="mt-4 text-2xl font-medium leading-snug md:text-3xl">{c.title}</h3>
-              <p className="mt-6 max-w-[560px] text-sm leading-[2] text-ink/70">{c.description}</p>
+            <div className="md:col-span-3">
+              <p className="text-xs font-medium text-navy">{c.client}</p>
+              <h3 className="mt-2 text-xl font-bold leading-snug">{c.title}</h3>
+              <p className="mt-4 text-sm leading-[2] text-sub">{c.description}</p>
             </div>
-          </Reveal>
+          </article>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }
