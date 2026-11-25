@@ -1,5 +1,3 @@
-import ContactButton from "./ContactButton";
-
 export default function Hero() {
   return (
     <section className="px-5 py-24 sm:px-8 md:py-36">
@@ -13,8 +11,7 @@ export default function Hero() {
           現場を知るコンサルタントが、貴社の課題に最適なソリューションをご提供します。
         </p>
         <div className="mt-10 flex flex-wrap gap-3">
-          <ContactButton className="rounded-md bg-navy px-7 py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-85">無料相談する</ContactButton>
-          <a href="#cases" className="rounded-md border border-line px-7 py-3.5 text-sm font-medium transition-colors hover:border-ink">実績を見る</a>
+          <a href="#cases" className="rounded-md bg-navy px-7 py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-85">実績を見る</a>
         </div>
       </div>
     </section>
